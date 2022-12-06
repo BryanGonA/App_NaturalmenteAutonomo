@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {
+  useState,
+  createContext,
+} from 'react';
 
-export default function App() {
+//Components
+
+import AuthNav from './src/navigation/authNav';
+
+import GenNav from './src/navigation/genNav';
+//Navigation
+
+//Dependencies
+import { NavigationContainer } from '@react-navigation/native';
+
+export const LoginContext = createContext();
+export default function Mystack() {
+  const [user, setUser] = useState('');
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <LoginContext.Provider value={{ setUser: setUser, user }}>
+        {user ? <AuthNav /> : <GenNav />}
+      </LoginContext.Provider>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
