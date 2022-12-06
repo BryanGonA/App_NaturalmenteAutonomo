@@ -10,10 +10,13 @@ import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
 import { Input, Icon, Text, Item, Button } from '@rneui/base';
 import useUser from '../../hooks/useUser';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from '../home';
 
 export default function LoginForm(props) {
   const { isLoginLoading, hasLoginError, login, isLogged } = useUser();
-  const { control, handleSubmit, errors, setValue, getValues } = useForm();
+  const { control, handleSubmit, setError, setValue, getValues } = useForm();
+  const back = createStackNavigator();
 
   const onSubmit = async (data) => {
     //Quitar hasta efectuar validaciones
@@ -30,11 +33,17 @@ export default function LoginForm(props) {
     login({ username, password });
   };
 
-  useEffect(() => {
+useEffect(() => {
     if (isLogged === true) {
-      props.nav.push('Home');
+      <back.Navigator>
+        <back.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+        />
+      </back.Navigator>
     }
-  }, [isLogged, props.nav]);
+  }, [isLogged]);
 
   const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const lost = () => {
@@ -47,7 +56,7 @@ export default function LoginForm(props) {
         control={control}
         render={({ onChange, onBlur, value }) => (
           <Input
-            placeholder="Email"
+            placeholder="Correo institucional"
             placeholderTextColor="white"
             onChangeText={(value) => setValue('Username', value)}
             value={value}
@@ -67,15 +76,15 @@ export default function LoginForm(props) {
         }}
         defaultValue=""
       />
-      {errors.Username && (
-        <Text style={styles.textError}>{errors.Username.message}</Text>
+      {setError.Username && (
+        <Text style={styles.textError}>{setError.Username.message}</Text>
       )}
 
       <Controller
         control={control}
         render={({ onChange, value }) => (
           <Input
-            placeholder="Password"
+            placeholder="Contraseña"
             placeholderTextColor="white"
             onChangeText={(value) => setValue('Password', value)}
             value={value}
@@ -90,8 +99,8 @@ export default function LoginForm(props) {
         rules={{ required: { value: true, message: 'La contraseña es requerida' } }}
         defaultValue=""
       />
-      {errors.Password && (
-        <Text style={styles.textError}>{errors.Password.message}</Text>
+      {setError.Password && (
+        <Text style={styles.textError}>{setError.Password.message}</Text>
       )}
 
       <View style={styles.button}>
@@ -102,7 +111,7 @@ export default function LoginForm(props) {
             marginTop: 20,
           }}
           titleStyle={{
-            color: '#d32626',
+            color: '#79d70f',
           }}
           title="Iniciar sesión"
           onPress={handleSubmit(onSubmit)}

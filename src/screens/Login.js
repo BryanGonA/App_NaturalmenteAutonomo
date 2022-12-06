@@ -12,11 +12,11 @@ import LoginForm from './components/LoginForm'
             <View style={styles.overlay}>
             <View style={styles.logo}>
                 <Image
-                source={require('../assets/logo.png')}
-                style={{ width: 100, height: 100 }}
+                source={require('../assets/log_blanck.png')}
+                style={{ width: 180, height: 180, resizeMode: 'contain' }}
                 />
             </View>
-            <View><Text style={styles.title}>Inicia sesión</Text></View>
+            
             <LoginForm nav={navigation}/>
             
             </View>
