@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ImageBackground} from 'react-native';
 import {Text,Image } from '@rneui/base';
-import LoginForm from './components/LoginForm'
+import LoginForm from '../components/LoginForm';
     const image = {
     uri: '../assets/splash.png', //foto de fondo App_Bienestar\src\assets
     };
