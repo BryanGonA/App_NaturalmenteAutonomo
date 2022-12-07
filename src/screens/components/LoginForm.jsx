@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 8,
-    marginTop: 20,
+    marginTop: 10,
   },
   textError: {
     color: 'white',
