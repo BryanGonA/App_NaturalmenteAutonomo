@@ -58,11 +58,13 @@ useEffect(() => {
           <Input
             placeholder="Correo institucional"
             placeholderTextColor="white"
+            
             onChangeText={(value) => setValue('Username', value)}
             value={value}
             inputContainerStyle={{
               borderBottomWidth: 1,
               borderBottomColor: 'white',
+
             }}
           />
         )}
