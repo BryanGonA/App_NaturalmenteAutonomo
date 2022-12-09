@@ -44,7 +44,7 @@ export default function HomeScreen({ navigation }) {
 function HomeScreen() {
         return (
         <View style={styles.container}>
-            <View style={styles.overlay}>
+            <View style={styles.button}>
             
                 <Nutrition nav={navigation}/>
                 <Vida nav={navigation}/>
@@ -215,8 +215,14 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     button: {
+        flex: 1,
         alignItems: 'center',
-        margin: 10,
+        height: '100%',
+        width: '100%',
+        margin: 50,
+        marginTop:120,
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
     },
     navigator: {
         borderTopWidth: 0,
