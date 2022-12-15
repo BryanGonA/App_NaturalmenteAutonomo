@@ -1,6 +1,6 @@
 const ENDPOINT = 'https://reqres.in/api/login';
 //SITIO WEB DE LA API A LA QUE NOS VAMOS A CONECTAR para probar el login
-//Recibe por parametro un objeto con el username y nuestro password
+//Recibe por parametro un objeto con el user y nuestro password
 export default async function login({ username, password }) {
     const res = await fetch(`${ENDPOINT}`, {
         method: 'POST',
@@ -15,9 +15,12 @@ export default async function login({ username, password }) {
         body: JSON.stringify({ email: username, password: password }),
         redirect: 'follow',
     });
+    
     if (!res.ok)
-        throw new Error('Error en la petición');
+        throw new Error('Algo salió mal, intente de nuevo');
+        
     const response = await res.json();
+    
     //Recibimos un JWT
     const { token } = response;
     return token;

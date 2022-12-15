@@ -32,7 +32,7 @@ export default function Alimento({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#79d70f',
+        backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent:"center"
     },

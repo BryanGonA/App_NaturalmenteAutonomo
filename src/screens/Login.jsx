@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ImageBackground} from 'react-native';
 import {Text,Image } from '@rneui/base';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/LoginFormm';
     const image = {
     uri: '../assets/splash.png', //foto de fondo App_Bienestar\src\assets
     };
@@ -45,7 +45,7 @@ import LoginForm from '../components/LoginForm';
         height: '100%',
         width: '100%',
         position: 'absolute',
-        backgroundColor: '#79d70f',
+        backgroundColor: '#2baf39',
         justifyContent: 'space-evenly',
         flexDirection: 'column',
     },

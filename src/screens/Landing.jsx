@@ -7,9 +7,11 @@ import {
     Image,
 } from 'react-native';
 import { Button } from '@rneui/base';
+import { Ionicons } from '@expo/vector-icons';
     const image = {
     uri: '../assets/splash.png',
     };
+    
 
     export default class LandingScreen extends Component {
 
@@ -24,14 +26,20 @@ import { Button } from '@rneui/base';
             <View style={styles.btn}>
                 <Button
                 buttonStyle={{
-                    backgroundColor: 'white',
+                    backgroundColor: '#202b18',
                     width: 200,
+                    borderRadius: 20,
+                    height: 40,
+                    
                 }}
                 titleStyle={{
-                    color: '#79d70f',
+                    color: 'white',
+                    fontWeight: 'normal',
+                    fontSize: 14,
                 }}
                 onPress={() => this.props.navigation.navigate('Login')}
                 title="Comenzar"
+                
                 />
             </View>
             <View style={styles.footer}>
@@ -78,7 +86,7 @@ import { Button } from '@rneui/base';
         height: '100%',
         width: '100%',
         position: 'absolute',
-        backgroundColor: '#79d70f',
+        backgroundColor: '#2baf39',
         justifyContent: 'space-evenly',
         flexDirection: 'column',
     },
