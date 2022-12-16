@@ -10,6 +10,7 @@ import AuthNav from './src/navigation/authNav';
 import GenNav from './src/navigation/genNav';
 
 
+
 export const LoginContext = createContext();
 export default function Mystack() {
   const [user, setUser] = useState('');
@@ -25,6 +26,7 @@ export default function Mystack() {
       <LoginContext.Provider value={{ setUser: setUser, user }}>
         {user ? <AuthNav /> : <GenNav />}
       </LoginContext.Provider>
+
     </NavigationContainer>
   );
 }

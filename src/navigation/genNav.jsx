@@ -2,6 +2,7 @@ import React from 'react';
 
 import LandingPage from '../screens/Landing';
 import LoginPage from '../screens/Login';
+
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Gentack = createStackNavigator();
@@ -19,6 +20,7 @@ return (
         component={LoginPage}
         options={{ headerShown: false }}
     />
+
     </Gentack.Navigator>
 );
 }

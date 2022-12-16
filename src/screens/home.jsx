@@ -46,7 +46,6 @@ function HomeScreen() {
         return (
         <View style={styles.container}>
             <View style={styles.button}>
-
                 <Nutrition nav={navigation}/>
                 <Vida nav={navigation}/>
                 <Alimento nav={navigation}/>
