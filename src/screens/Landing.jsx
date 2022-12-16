@@ -9,7 +9,7 @@ import {
 import { Button } from '@rneui/base';
 import { Ionicons } from '@expo/vector-icons';
     const image = {
-    uri: '../assets/splash.png',
+    uri: '../assets/backg.jpg',
     };
     
 
@@ -17,37 +17,36 @@ import { Ionicons } from '@expo/vector-icons';
 
     render() {
         return (
-        <ImageBackground source={image} style={styles.image}>
-            <View style={styles.overlay}>
-            <View style={styles.logo}>
-                <Image source={require('../assets/log_blanck.png')} style={styles.log} />
-            </View>
-
-            <View style={styles.btn}>
-                <Button
-                buttonStyle={{
-                    backgroundColor: '#202b18',
-                    width: 200,
-                    borderRadius: 20,
-                    height: 40,
+            <ImageBackground source={image} style={styles.image}>
+                <View style={styles.overlay}>
+                    <View style={styles.logo}>
+                        <Image source={require('../assets/log_blanck.png')} style={styles.log} />
+                    </View>
+                <View style={styles.btn}>
+                    <Button
+                    buttonStyle={{
+                        backgroundColor: '#202b18',
+                        width: 200,
+                        borderRadius: 20,
+                        height: 40,
+                        
+                    }}
+                    titleStyle={{
+                        color: 'white',
+                        fontWeight: 'normal',
+                        fontSize: 14,
+                    }}
+                    onPress={() => this.props.navigation.navigate('Login')}
+                    title="Comenzar"
                     
-                }}
-                titleStyle={{
-                    color: 'white',
-                    fontWeight: 'normal',
-                    fontSize: 14,
-                }}
-                onPress={() => this.props.navigation.navigate('Login')}
-                title="Comenzar"
-                
-                />
-            </View>
-            <View style={styles.footer}>
-                <Text style={styles.footerText}>Terminos y condiciones</Text>
-                <Text style={styles.footerText}>Privacidad</Text>
-            </View>
-            </View>
-        </ImageBackground>
+                    />
+                </View>
+                <View style={styles.footer}>
+                    <Text style={styles.footerText}>Terminos y condiciones</Text>
+                    <Text style={styles.footerText}>Privacidad</Text>
+                </View>
+                </View>
+            </ImageBackground>
         );
     }
     }
@@ -72,6 +71,8 @@ import { Ionicons } from '@expo/vector-icons';
     image: {
         flex: 1,
         resizeMode: 'cover',
+        width: '100%',
+        height: '100%',
     },
     footer: {
         flexDirection: 'row',
@@ -86,7 +87,7 @@ import { Ionicons } from '@expo/vector-icons';
         height: '100%',
         width: '100%',
         position: 'absolute',
-        backgroundColor: '#2baf39',
+        backgroundColor: 'transparent',
         justifyContent: 'space-evenly',
         flexDirection: 'column',
     },

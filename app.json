@@ -6,8 +6,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "backgroundImage":"./assets/backg.jpg",
     "splash": {
-      "backgroundColor": "#79d70f"
+      "backgroundImage": "./assets/backg.jpg"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -16,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "backgroundImage": "./assets/backg.jpg"
     },
     "android": {
       "adaptiveIcon": {

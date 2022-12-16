@@ -11,37 +11,6 @@ import Ionicons from 'react-native-vector-icons/AntDesign';
 
 
 export default function HomeScreen({ navigation }) {
-
-/*const [alimentos, setAlimentos] = useState([]);
-
-/*handleClick = (name) => {
-    switch (name) {
-        case 'ali':
-            this.Alimento({showTheThing: true})
-            this.Fisic({showTheThing: false})
-            this.Vida({showTheThing: false})
-            this.Nutrition({showTheThing: false})
-            break;
-        case 'fis':
-            this.Alimento({showTheThing: false})
-            this.Fisic({showTheThing: true})
-            this.Vida({showTheThing: false})
-            this.Nutrition({showTheThing: false})
-            break;
-        case 'vid':
-            this.Alimento({showTheThing: false})
-            this.Fisic({showTheThing: false})
-            this.Vida({showTheThing: true})
-            this.Nutrition({showTheThing: false})
-            break;
-        case 'ntr':
-            this.Alimento({showTheThing: false})
-            this.Fisic({showTheThing: false})
-            this.Vida({showTheThing: false})
-            this.Nutrition({showTheThing: true})
-            break;
-    }
-}*/
 function HomeScreen() {
         return (
         <View style={styles.container}>

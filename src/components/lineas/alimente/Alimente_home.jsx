@@ -26,19 +26,22 @@ export default function Alimente_home(navigation) {
     const renderRecipes = ({ item }) => (
         <TouchableHighlight
         underlayColor="rgba(73,182,77,0.9)"
+        backgroundColor="white"
         onPress={() => onPressRecipe(item)}
         >
-        <View style={styles.container}>
-            <Image style={styles.photo} source={{ uri: item.photo_url }} />
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
-        </View>
+            <View style={styles.container}>
+                <Image style={styles.photo} source={{ uri: item.photo_url }} />
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
+            </View>
+            
         </TouchableHighlight>
     );
 
     return (
         <View>
             <FlatList
+                backgroundColor="#2baf39"
                 vertical
                 showsVerticalScrollIndicator={false}
                 numColumns={2}
@@ -72,7 +75,7 @@ export const styles = StyleSheet.create({
         borderColor: '#cccccc',
         borderWidth: 1,
         borderRadius: 25,
-        
+        backgroundColor: 'white'
     },
     photo: {
         width: (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) / recipeNumColums,
@@ -94,5 +97,9 @@ export const styles = StyleSheet.create({
     category: {
         marginTop: 5,
         marginBottom: 5
-    }
+    },
+    screen: {
+        flex: 1,
+        backgroundColor: '#2baf39',
+    },
 });
