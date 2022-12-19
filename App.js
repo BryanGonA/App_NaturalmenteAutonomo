@@ -1,13 +1,15 @@
 import React, {
   useState,
-  createContext,
+  createContext, 
 } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet  } from 'react-native';
 
 
 import AuthNav from './src/navigation/authNav';
 
 import GenNav from './src/navigation/genNav';
+
 
 
 
@@ -22,12 +24,28 @@ export default function Mystack() {
 }*/
 
   return (
-    <NavigationContainer>
-      <LoginContext.Provider value={{ setUser: setUser, user }}>
-        {user ? <AuthNav /> : <GenNav />}
-      </LoginContext.Provider>
-
-    </NavigationContainer>
+      
+        <NavigationContainer style={styles.nav}>          
+          <LoginContext.Provider value={{ setUser: setUser, user }}>
+            {user ? <AuthNav /> : <GenNav />}
+          </LoginContext.Provider>
+        </NavigationContainer>
+    
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      resizeMode: 'contain',
+      zIndex: -1,
+  },
+  title: {
+      color: 'white',
+      fontSize:50,
+  },
+  nav: {
+      backgroundColor: 'transparent',
+      position: 'absolute',
+  },
+});

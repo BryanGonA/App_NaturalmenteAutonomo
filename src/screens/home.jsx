@@ -50,8 +50,11 @@ const Tab = createBottomTabNavigator();
 
 
 return (
+    /*barra de navegación, esta es la que se ve en la parte inferior de la pantalla
+    y que permite cambiar de pantalla a través de los botones de la barra de navegación.
+    Se hizo de esta manera para facilitar al usuario la navegación por la aplicación.
     
-
+    */
     <ImageBackground style={styles.image}>
         <View style={styles.container}>
             <View style={styles.overlay}>
@@ -127,29 +130,6 @@ return (
                         
                     
                     }} />
-                    <Tab.Screen name="Perfil" component={ProfileScreen} options={{
-                        headerTitle: 'Naturalmente Autónomo',
-                        headerStatusBarHeight:   13,
-                        headerTitleStyle: {
-                            fontWeight: 'bold',
-                            
-                            
-                        },
-                        headerStyle:{
-                            borderRadius: 1,
-                            shadowColor: '#000',
-                            shadowOffset: { width: 0, height: 2 },
-                            shadowOpacity: 0.8,
-                            shadowRadius: 2,
-                        },
-                        headerLeft: () => (
-                            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-                                <Ionicon name={'arrow-back-ios'} size={28} alignItems={'center'}/>
-                            </TouchableOpacity>
-                        ),
-                    }}
-                        centerComponent={{ text: 'Naturalmente Autónomo', style: { color: '#79d70f' } }}
-                    />
                     <Tab.Screen name="Eventos" component={EventsScreen} options={{
                         headerTitle: 'Naturalmente Autónomo',
                         headerStatusBarHeight:   13,
@@ -190,6 +170,29 @@ return (
                             </TouchableOpacity>
                         ),
                     }}/>
+                    <Tab.Screen name="Perfil" component={ProfileScreen} options={{
+                        headerTitle: 'Naturalmente Autónomo',
+                        headerStatusBarHeight:   13,
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                            
+                            
+                        },
+                        headerStyle:{
+                            borderRadius: 1,
+                            shadowColor: '#000',
+                            shadowOffset: { width: 0, height: 2 },
+                            shadowOpacity: 0.8,
+                            shadowRadius: 2,
+                        },
+                        headerLeft: () => (
+                            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                                <Ionicon name={'arrow-back-ios'} size={28} alignItems={'center'}/>
+                            </TouchableOpacity>
+                        ),
+                    }}
+                        centerComponent={{ text: 'Naturalmente Autónomo', style: { color: '#79d70f' } }}
+                    />
                 </Tab.Navigator>
             </View>
         </View>

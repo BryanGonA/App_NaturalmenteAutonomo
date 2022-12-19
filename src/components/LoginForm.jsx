@@ -134,4 +134,11 @@ const styles = StyleSheet.create({
   textError: {
     color: 'white',
   },
+  btn: {
+        flexDirection: 'column',
+        height: 150,
+        justifyContent: 'space-evenly',
+        alignSelf: 'center',
+        bottom: -50,
+    },
 });

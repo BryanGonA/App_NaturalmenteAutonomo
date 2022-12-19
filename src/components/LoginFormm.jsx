@@ -5,6 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import useUser from '../hooks/useUser';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/home';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default function LoginFormm(props) {
@@ -46,7 +47,7 @@ export default function LoginFormm(props) {
                 control={control}
                 
                 render={({ onChange, onBlur, value  }) => (
-                    
+                
                 <TextInput
                     style={styles.input}
                     
@@ -68,6 +69,7 @@ export default function LoginFormm(props) {
             <Controller
                 control={control}
                 render={({ onChange, onBlur, value }) => (
+                
                 <TextInput
                     style={styles.input}
                     
@@ -109,7 +111,11 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: 'center',
+        width: 150,
         margin: 10,
+        marginTop: 50,
+        
         },
         container: {
         flex: 1,

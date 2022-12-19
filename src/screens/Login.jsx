@@ -1,19 +1,20 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground} from 'react-native';
+import { View, StyleSheet, ImageBackground, Dimensions} from 'react-native';
 import {Text,Image } from '@rneui/base';
 import LoginForm from '../components/LoginFormm';
-    const image = {
-    uri: '../assets/splash.png', //foto de fondo App_Bienestar\src\assets
-    };
+    
+    const screenHeight = Dimensions.get('window').height;
+    const screenWidth = Dimensions.get('window').width;
+
     export default function LoginScren ({navigation}) {
 
         return (
-        <ImageBackground source={image} style={styles.image}>
+        <ImageBackground source={require('../assets/backg.png')} style={styles.image}>
             <View style={styles.overlay}>
             <View style={styles.logo}>
                 <Image
-                source={require('../assets/log_blanck.png')}
-                style={{ width: 180, height: 180, resizeMode: 'contain' }}
+                    source={require('../assets/log_blanck.png')}
+                    style={{ width: 180, height: 180, resizeMode: 'contain' }}
                 />
             </View>
             
@@ -37,15 +38,20 @@ import LoginForm from '../components/LoginFormm';
         textAlign:"center"
     },
     image: {
-        flex: 1,
+        zIndex:-1,
         resizeMode: 'cover',
+        width: screenWidth,
+        height: screenHeight,
+        justifyContent: 'center',
+        alignContent: 'center',
+        position: 'absolute',
     },
     overlay: {
         flex: 1,
         height: '100%',
         width: '100%',
         position: 'absolute',
-        backgroundColor: '#2baf39',
+        backgroundColor: 'transparent',
         justifyContent: 'space-evenly',
         flexDirection: 'column',
     },

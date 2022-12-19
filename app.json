@@ -6,9 +6,8 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "backgroundImage":"./assets/backg.jpg",
     "splash": {
-      "backgroundImage": "./assets/backg.jpg"
+      "backgroundImage": "./assets/backg.png"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "resizeMode": "contain",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#FFFFFF",
+        "backgroundImage": "./assets/backg.png"
       }
     },
     "web": {

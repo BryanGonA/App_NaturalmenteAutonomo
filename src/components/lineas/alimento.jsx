@@ -1,8 +1,6 @@
-import React, { Component, useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ImageBackground } from 'react-native';
+import React, {  } from 'react';
+import { View, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import HomeScreen from './alimente/Alimente_home';
-import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Alimento({ navigation }) {

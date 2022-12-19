@@ -5,19 +5,19 @@ import {
     StyleSheet,
     ImageBackground,
     Image,
+    Dimensions,
 } from 'react-native';
 import { Button } from '@rneui/base';
 import { Ionicons } from '@expo/vector-icons';
-    const image = {
-    uri: '../assets/backg.jpg',
-    };
     
+    const screenHeight = Dimensions.get('window').height;
+    const screenWidth = Dimensions.get('window').width;
 
     export default class LandingScreen extends Component {
 
     render() {
         return (
-            <ImageBackground source={image} style={styles.image}>
+            <ImageBackground source={require('../assets/backg.png')} style={styles.image}>
                 <View style={styles.overlay}>
                     <View style={styles.logo}>
                         <Image source={require('../assets/log_blanck.png')} style={styles.log} />
@@ -69,10 +69,14 @@ import { Ionicons } from '@expo/vector-icons';
         bottom: -50,
     },
     image: {
-        flex: 1,
+        
+        zIndex:-1,
         resizeMode: 'cover',
-        width: '100%',
-        height: '100%',
+        width: screenWidth,
+        height: screenHeight,
+        justifyContent: 'center',
+        alignContent: 'center',
+        position: 'absolute',
     },
     footer: {
         flexDirection: 'row',
@@ -84,9 +88,6 @@ import { Ionicons } from '@expo/vector-icons';
     },
     overlay: {
         flex: 1,
-        height: '100%',
-        width: '100%',
-        position: 'absolute',
         backgroundColor: 'transparent',
         justifyContent: 'space-evenly',
         flexDirection: 'column',
@@ -99,7 +100,7 @@ import { Ionicons } from '@expo/vector-icons';
         height: 200,
         width: 200,
         borderRadius: 50,
-        overflow: 'hidden',
+        
         
 
     },
