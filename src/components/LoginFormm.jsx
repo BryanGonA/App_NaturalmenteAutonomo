@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { Text, View, TextInput, StyleSheet } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import { TextInput } from "react-native-paper";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import useUser from '../hooks/useUser';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -50,7 +51,7 @@ export default function LoginFormm(props) {
                 
                 <TextInput
                     style={styles.input}
-                    
+                    left={<TextInput.Icon name={() => <Icon name="user" size={20} color="gray" />} />}
                     onChangeText={(value) => setValue('Username', value)}
                     value={value}
                     placeholder="Usuario"
@@ -72,7 +73,7 @@ export default function LoginFormm(props) {
                 
                 <TextInput
                     style={styles.input}
-                    
+                    left={<TextInput.Icon name={() => <Icon name="lock" size={20} color="grey" />} />}
                     onChangeText={(value) => setValue('Password', value)}
                     value={value}
                     placeholder="Contraseña"
