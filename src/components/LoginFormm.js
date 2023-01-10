@@ -1,3 +1,5 @@
+/* The above code is a login-form that uses react-hook-form to validate. 
+*/
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
@@ -30,6 +32,8 @@ export default function LoginFormm(props) {
     
         login({ username, password });
     };
+    /* Hook que se utiliza para realizar efectos secundarios en un componente de función. Es un sustituto cercano
+    de `componentDidMount`, `componentDidUpdate` y `componentWillUnmount`.*/
     useEffect(() => {
         if (isLogged === true) {
             <back.Navigator>
@@ -45,55 +49,64 @@ export default function LoginFormm(props) {
     return (
         <View>
             <Controller
-                control={control}
-                
-                render={({ onChange, onBlur, value  }) => (
-                
+            control={control}
+            render={({ onChange, onBlur, value }) => (
                 <TextInput
-                    style={styles.input}
-                    left={<TextInput.Icon name={() => <Icon name="user" size={20} color="gray" />} />}
-                    onChangeText={(value) => setValue('Username', value)}
-                    value={value}
-                    placeholder="Usuario"
+                style={styles.input}
+                left={
+                    <TextInput.Icon
+                    name={() => <Icon name="user" size={20} color="gray" />}
+                    />
+                }
+                onChangeText={(value) => setValue("Username", value)}
+                value={value}
+                placeholder="Usuario"
                 />
-                )}
-                name="Username"
-                rules={{
-                    required:{ value: true, message: 'Por favor, digita el usuario' },
-                    pattern: {
-                        message: 'No es un usuario válido',
-                    },
-                }}
-                defaultValue=""
+            )}
+            name="Username"
+            rules={{
+                required: { value: true, message: "Por favor, digita el usuario" },
+                pattern: {
+                message: "No es un usuario válido",
+                },
+            }}
+            defaultValue=""
             />
             {errors.Username && <Text>Introduce un usuario.</Text>}
             <Controller
-                control={control}
-                render={({ onChange, onBlur, value }) => (
-                
+            control={control}
+            render={({ value, pressed }) => (
                 <TextInput
-                    style={styles.input}
-                    left={<TextInput.Icon name={() => <Icon name="lock" size={20} color="grey" />} />}
-                    onChangeText={(value) => setValue('Password', value)}
-                    value={value}
-                    placeholder="Contraseña"
-                    secureTextEntry={true}
+                style={styles.input}
+                left={
+                    <TextInput.Icon
+                    name={() => <Icon name="lock" size={20} color="grey" />}
+                right={
+                    <TextInput.Icon
+                    name={() => <Icon name={pressed ? 'eye' : 'eye-slash'} size={20} color="grey" />}
+                    onPress={() => secureTextEntry ? setSecureTextEntry(false) : setSecureTextEntry(true)}
+                    />
+                }
                 />
-                )}
-                name="Password"
-                rules={{
-                    required: { value: true, message: 'La contraseña es requerida' }
-                }}
-                defaultValue=""
+                }
+                onChangeText={(value) => setValue("Password", value)}
+                value={value}
+                placeholder="Contraseña"
+                secureTextEntry={true}
+                />
+            )}
+            name="Password"
+            rules={{
+                required: { value: true, message: "La contraseña es requerida" },
+            }}
+            defaultValue=""
             />
             {errors.Password && <Text>Introduce una contraseña.</Text>}
-                
-            
             <TouchableOpacity
-                style={styles.button}
-                onPress={handleSubmit(onSubmit)}
+            style={styles.button}
+            onPress={handleSubmit(onSubmit)}
             >
-                <Text style={styles.Textt}>Iniciar sesión</Text>
+            <Text style={styles.Textt}>Iniciar sesión</Text>
             </TouchableOpacity>
         </View>
     );
