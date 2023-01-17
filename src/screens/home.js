@@ -82,7 +82,7 @@ return (
                         
                         },
                         tabBarStyle: { 
-                            backgroundColor: '#edf4f2',
+                            backgroundColor: 'white',
                             borderTopColor: 'transparent',
                             borderTopWidth: 0,
                             height: 60,
@@ -102,7 +102,7 @@ return (
                             borderRadius:0,                            
                         },
                         
-                        tabBarActiveTintColor: '#2baf39',
+                        tabBarActiveTintColor: '#5AA469',
                         tabBarInactiveTintColor: 'gray',
                         
                     })}
@@ -135,6 +135,7 @@ return (
                         headerStatusBarHeight:   13,
                         headerTitleStyle: {
                             fontWeight: 'bold',
+                            name:'invisible'
                             
                         },
                         headerStyle:{
@@ -204,7 +205,7 @@ return (
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2baf39',
+        backgroundColor: '#00000',
         alignItems: 'center',
         justifyContent:"center"
     },

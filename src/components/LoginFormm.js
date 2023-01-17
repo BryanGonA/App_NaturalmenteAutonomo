@@ -72,12 +72,13 @@ export default function LoginFormm(props) {
             }}
             defaultValue=""
             />
-            {errors.Username && <Text>Introduce un usuario.</Text>}
+            {errors.Username && <Text style={styles.errors}>Introduce un usuario.</Text>}
             <Controller
             control={control}
             render={({ value, pressed }) => (
                 <TextInput
                 style={styles.input}
+                
                 left={
                     <TextInput.Icon
                     name={() => <Icon name="lock" size={20} color="grey" />}
@@ -101,13 +102,14 @@ export default function LoginFormm(props) {
             }}
             defaultValue=""
             />
-            {errors.Password && <Text>Introduce una contraseña.</Text>}
-            <TouchableOpacity
-            style={styles.button}
-            onPress={handleSubmit(onSubmit)}
-            >
-            <Text style={styles.Textt}>Iniciar sesión</Text>
-            </TouchableOpacity>
+            {errors.Password && <Text style={styles.errors}>Introduce una contraseña.</Text>}
+            
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={handleSubmit(onSubmit)}>
+                    <Text style={styles.Textt}>Iniciar sesión</Text>
+                </TouchableOpacity>
+            
         </View>
     );
     
@@ -119,34 +121,45 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         },
         button: {
+        flex:-1,
         color: 'white',
         height: 40,
-        backgroundColor: '#202b18',
+        backgroundColor: '#35B67F',
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
         width: 150,
-        margin: 10,
-        marginTop: 50,
+        marginTop:400
+        
         
         },
         container: {
         flex: 1,
         justifyContent: 'center',
-        paddingTop: 80,
-        padding: 8,
-        backgroundColor: '#0e101c',
+        padding: 8,       
         },
         input: {
-        backgroundColor: 'white',
-        borderColor: 'none',
+        
+        backgroundColor: 'transparent',
+        borderColor: 'gray',
+        borderWidth: 1,
+        justifyContent: 'center',
         height: 40,
         padding: 10,
-        borderRadius: 4,
-        margin: 10,
+        borderRadius: 10,
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+        top: 370,
         },
         Textt: {
-        color: 'white',
+        color: 'white',      
+        
+        },
+        errors: {
+        color: 'red',
+        top: 370,
+        marginLeft: 30,
         },
 });

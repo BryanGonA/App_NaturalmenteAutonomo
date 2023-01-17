@@ -41,7 +41,7 @@ export default function Alimente_home(navigation) {
     return (
         <View>
             <FlatList
-                backgroundColor="#2baf39"
+                backgroundColor="white"
                 vertical
                 showsVerticalScrollIndicator={false}
                 numColumns={2}

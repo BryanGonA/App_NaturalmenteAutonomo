@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "backgroundImage": "./assets/backg.png"
+      "backgroundImage": "./assets/backg_1.jpg"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,14 +17,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "backgroundImage": "./assets/backg.jpg"
+      "backgroundImage": "./assets/backg_1.jpg"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "resizeMode": "contain",
         "backgroundColor": "#FFFFFF",
-        "backgroundImage": "./assets/backg.png"
+        "backgroundImage": "./assets/backg_1.jpg"
       }
     },
     "web": {

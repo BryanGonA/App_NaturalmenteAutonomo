@@ -9,14 +9,9 @@ import LoginForm from '../components/LoginFormm';
     export default function LoginScren ({navigation}) {
 
         return (
-        <ImageBackground source={require('../assets/backg.png')} style={styles.image}>
+        <ImageBackground source={require('../assets/backg_white.jpg')} style={styles.image}>
             <View style={styles.overlay}>
-            <View style={styles.logo}>
-                <Image
-                    source={require('../assets/log_blanck.png')}
-                    style={{ width: 180, height: 180, resizeMode: 'contain' }}
-                />
-            </View>
+            
             
             <LoginForm nav={navigation}/>
             
