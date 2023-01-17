@@ -9,6 +9,7 @@ import useUser from '../hooks/useUser';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/home';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button } from '@rneui/base';
 
 
 export default function LoginFormm(props) {
@@ -103,13 +104,16 @@ export default function LoginFormm(props) {
             defaultValue=""
             />
             {errors.Password && <Text style={styles.errors}>Introduce una contraseña.</Text>}
-            
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={handleSubmit(onSubmit)}>
-                    <Text style={styles.Textt}>Iniciar sesión</Text>
-                </TouchableOpacity>
-            
+                <View style={styles.button} >
+                <Button 
+                    buttonStyle={{
+                        backgroundColor: '#35B67F',
+                    }}
+                    onPress={handleSubmit(onSubmit)}
+                    title="Iniciar Sesión"
+                        
+                />
+                </View>
         </View>
     );
     
@@ -120,46 +124,38 @@ const styles = StyleSheet.create({
         margin: 20,
         marginLeft: 10,
         },
-        button: {
-        flex:-1,
-        color: 'white',
-        height: 40,
-        backgroundColor: '#35B67F',
-        borderRadius: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        width: 150,
-        marginTop:400
-        
-        
-        },
-        container: {
-        flex: 1,
-        justifyContent: 'center',
-        padding: 8,       
-        },
         input: {
-        
-        backgroundColor: 'transparent',
-        borderColor: 'gray',
-        borderWidth: 1,
-        justifyContent: 'center',
-        height: 40,
-        padding: 10,
-        borderRadius: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 20,
-        top: 370,
+            backgroundColor: 'transparent',
+            borderColor: 'gray',
+            borderWidth: 1,
+            justifyContent: 'center',
+            height: 40,
+            padding: 10,
+            borderRadius: 10,
+            marginLeft: 30,
+            marginRight: 30,
+            marginTop: 20,
+            top: 170,
+            },
+        button: {
+            color: 'white',
+            height: 40,
+            backgroundColor: '#35B67F',
+            borderRadius: 20,
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: 'center',
+            width: 150,
+            top:200
         },
+        
         Textt: {
         color: 'white',      
         
         },
         errors: {
         color: 'red',
-        top: 370,
+        top: 170,
         marginLeft: 30,
         },
 });
