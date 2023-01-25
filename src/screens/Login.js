@@ -11,7 +11,7 @@ import LoginForm from '../components/LoginFormm';
         return (
         <ImageBackground source={require('../assets/backg_white.jpg')} style={styles.image}>
             <View style={styles.overlay}>
-            
+                
             
             <LoginForm nav={navigation}/>
             

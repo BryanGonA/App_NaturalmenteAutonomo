@@ -17,7 +17,7 @@ import { Ionicons } from '@expo/vector-icons';
 
     render() {
         return (
-            <ImageBackground source={require('../assets/backg_white.jpg')} style={styles.image}>
+            <ImageBackground source={require('../assets/backg_1.jpg')} style={styles.image}>
                 <View style={styles.overlay}>
                     <View style={styles.btn}>
                         <Button

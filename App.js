@@ -7,28 +7,22 @@ import { StyleSheet  } from 'react-native';
 
 
 import AuthNav from './src/navigation/authNav';
-
+import { NativeBaseProvider, Text, Box } from "native-base";
 import GenNav from './src/navigation/genNav';
-
-
-
 
 export const LoginContext = createContext();
 export default function Mystack() {
   const [user, setUser] = useState('');
 
-  /*async function  componentDidMount () {
-    await Expo.Font.loadAsync({
-        Ionicons: require('@expo/vector-icons/fonts/Ionicons.ttf'),
-  });
-}*/
 
   return (
       
-        <NavigationContainer style={styles.nav}>          
-          <LoginContext.Provider value={{ setUser: setUser, user }}>
-            {user ? <AuthNav /> : <GenNav />}
-          </LoginContext.Provider>
+        <NavigationContainer style={styles.nav}>
+          <NativeBaseProvider>   
+              <LoginContext.Provider value={{ setUser: setUser, user }}>
+                {user ? <AuthNav /> : <GenNav />}
+              </LoginContext.Provider>
+          </NativeBaseProvider>
         </NavigationContainer>
     
   );

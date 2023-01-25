@@ -82,24 +82,18 @@ return (
                         
                         },
                         tabBarStyle: { 
-                            backgroundColor: 'white',
+                            backgroundColor: 'transparent',
                             borderTopColor: 'transparent',
                             borderTopWidth: 0,
                             height: 60,
                             justifyContent: 'center',
                             alignItems: 'center',
                             paddingBottom: 5,
-                            shadowColor: '#000',
-                            shadowOffset: { width: 0, height: 2 },
                             shadowOpacity: 0.8,
                             shadowRadius: 2,
                             elevation: 20,   
                             overflow:'hidden',
-                            left: 0,
-                            bottom: 0,
-                            right: 0,  
-                            padding:5,       
-                            borderRadius:0,                            
+                            padding:10,                                  
                         },
                         
                         tabBarActiveTintColor: '#5AA469',
@@ -109,7 +103,7 @@ return (
                 >
                     <Tab.Screen name="Inicio" component={HomeScreen} options={{
                         
-                        headerTitle: 'Naturalmente Autónomo', 
+                        
                         headerStatusBarHeight:   13,
                         headerTitleStyle: {
                             fontWeight: 'bold',
@@ -214,7 +208,7 @@ const styles = StyleSheet.create({
         fontSize:50,
     },
     overlay: {
-        flex: 1,
+        
         height: '100%',
         width: '100%',
         position: 'absolute',
@@ -227,16 +221,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     image: {
-        flex: 1,
+        height: '100%',
+        width: '100%',
         resizeMode: 'cover',
     },
     button: {
-        flex: 1,
+        
         alignItems: 'center',
         height: '100%',
         width: '100%',
-        margin: 50,
-        marginTop:120,
+        margin: 10,
+        marginTop:20,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
     },
