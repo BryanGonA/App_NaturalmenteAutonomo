@@ -2,17 +2,37 @@ import React from 'react';
 
 import Home from '../screens/home'
 import Home1 from '../screens/Home1'
+import Home3 from '../screens/home3'
 
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from '../components/lineas/alimente/Alimente_home';
+import Settings from '../screens/Settings';
 
 const RootStack = createStackNavigator();
 export default function AuthNav() {
     return (
-        <RootStack.Navigator>
+        <RootStack.Navigator
+            initialRouteName='Home'
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: 'black',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                },
+            }}
+        
+        >
+
             <RootStack.Screen
-                name="Home1"
-                component={Home1}
+                name="Home"
+                component={Home3}
+                options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+                name="Settings"
+                component={Settings}
                 options={{ headerShown: false }}
             />
             <RootStack.Screen

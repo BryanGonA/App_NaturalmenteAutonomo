@@ -14,7 +14,8 @@ import Ionicons from 'react-native-vector-icons/AntDesign';
 
 function HomeScreen({ navigation }) {
     
-    return ( <Box alignItems="center" width={100} height={100} marginTop={-300}>
+    return ( 
+    <Box alignItems="center" width={100} height={100} marginTop={-300}>
     <HStack space={1} alignItems="center" >
         <Box width={200} height={220} rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
             borderColor: "primary.400",

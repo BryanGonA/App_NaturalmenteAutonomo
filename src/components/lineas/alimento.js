@@ -1,7 +1,8 @@
-import React, {  } from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import React, { Component } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { Pressable, VStack, Box, Divider, Heading, AspectRatio, Image, Text, Center, HStack, Stack, NativeBaseProvider } from 'native-base';
 
 export default function Alimento({ navigation }) {
 

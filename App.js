@@ -3,7 +3,7 @@ import React, {
   createContext, 
 } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet  } from 'react-native';
+import { StyleSheet, Animated, Image, SafeAreaView, TouchableOpacity, View  } from 'react-native';
 
 
 import AuthNav from './src/navigation/authNav';
