@@ -10,7 +10,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/home';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from '@rneui/base';
-
+import { horizontalScale, moderateScale, verticalScale } from '../constants/Metrics';
+import lock from '../assets/icons/lock.svg';
+import eye from '../assets/icons/eye.svg';
+import eyeSlash from '../assets/icons/eye-slash.svg';
 
 export default function LoginFormm(props) {
     
@@ -83,17 +86,14 @@ export default function LoginFormm(props) {
                 render={({ value, pressed }) => (
                     <TextInput
                     style={styles.input}
-                    
-                    left={
-                        <TextInput.Icon
-                        name={() => <Icon name="lock" size={20} color="grey" />}
                     right={
-                        <TextInput.Icon
-                        name={() => <Icon name={pressed ? 'eye' : 'eye-slash'} size={20} color="grey" />}
-                        onPress={() => secureTextEntry ? setSecureTextEntry(false) : setSecureTextEntry(true)}
-                        />
+                        <Icon name={pressed ? eye : eyeSlash} size={20} color="grey" 
+                        onPress={() => secureTextEntry ? setSecureTextEntry(false) : setSecureTextEntry(true)}/>
+                        
+                        
                     }
-                    />
+                    left={
+                        <Icon source={lock} size={20} color="grey" />
                     }
                     onChangeText={(value) => setValue("Password", value)}
                     value={value}
@@ -124,6 +124,7 @@ export default function LoginFormm(props) {
     
 }
 const styles = StyleSheet.create({
+    
         label: {
         color: 'white',
         margin: 20,

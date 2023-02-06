@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Home from '../screens/home'
-import Home1 from '../screens/Home1'
+import Home1 from '../components/lineas/Inicio'
 import Home3 from '../screens/home3'
 
 import { createStackNavigator } from "@react-navigation/stack";
