@@ -1,26 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useRef, useState } from 'react';
-import { Animated, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import profile from '../assets/profile.png';
+import { Animated, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView, } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Inicio, { inicio } from '../components/lineas/Inicio';
-// Tab ICons...
+import Inicio from '../components/lineas/Inicio';
+import Dropdown from 'react-bootstrap/Dropdown';
+import {
+    Menu,
+    MenuOptions,
+    MenuOption,
+    MenuTrigger,
+    
+} from 'react-native-popup-menu';
 
+
+// Tab ICons...
 import home from '../assets/home.png';
 import search from '../assets/search.png';
 import notifications from '../assets/bell.png';
 import settings from '../assets/settings.png';
 import logout from '../assets/logout.png';
-// Menu
+
+// Icons and Images...
 import menu from '../assets/menu.png';
 import close from '../assets/close.png';
-
-// Photo
-import photo from '../assets/photo.jpg';
 import logo from "../assets/log.png";
 import { HStack } from 'native-base';
 import avatar from '../assets/avatar.png';
-import { Tab } from '@rneui/base';
 
 const TopBar = createBottomTabNavigator();
 
@@ -39,8 +43,19 @@ export default function Home3() {
     const scaleValue = useRef(new Animated.Value(1)).current;
     const closeButtonOffset = useRef(new Animated.Value(0)).current;
 
+    //  Dropdown Menu...
+    function DropdownMenu() {
+        return (
+            <Dropdown>
+                <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+        );
+    }
     
-
     return (
         <SafeAreaView style={styles.container}>
 
@@ -123,7 +138,7 @@ export default function Home3() {
                     style={{
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    top: 15,
+                    top: 10,
                     }}>
                     <TouchableOpacity onPress={() => {
                         // Do Actions Here....
@@ -160,17 +175,70 @@ export default function Home3() {
                     <Image source={logo} style={{
                             top: 15,
                             resizeMode: 'contain',
-                    }}></Image>
-                    <TouchableOpacity>
+                    }}></Image >
+                        <Menu style={
+                            {
+                            backgroundColor: 'transparent',
+                            
+                            }}>
+                            <MenuTrigger>
+                                <Image source={notifications} style={{
+                                width: 20,
+                                height: 20,
+                                top: 15,
+                                }}></Image>
+                            </MenuTrigger>   
+                            <MenuOptions style={
+                                {
+                                backgroundColor: 'white',
+                                borderRadius: 10,
+                                shadowColor: '#000',
+                                shadowOffset: { width: 0, height: 2 },
+                                shadowOpacity: 0.8,
+                                shadowRadius: 2,  
+                                elevation: 5,
+                                }}>
+                                <ScrollView style={{ maxHeight: 140 }}>
+                                    <MenuOption onSelect={() => alert(`Notification 1`)} text='Notification 1' />
+                                    <MenuOption onSelect={() => alert(`Notification 2`)} >
+                                        <Text>Notification 2</Text>
+                                    </MenuOption>
+                                    <MenuOption onSelect={() => alert(`Notification 3`)} text='Notification 3' />
+                                    <MenuOption onSelect={() => alert(`Notification 4`)} text='Notification 4' />
+                                    <MenuOption onSelect={() => alert(`Notification 5`)} text='Notification 5' />
+                                    
+                                    <MenuOption onSelect={() => alert(`Ver todas`)} style={
+                                    {
+                                        alignContent: 'center',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        alignSelf: 'center',
+                                        
+                                    }}>
+                                        <Text style={{color: 'blue',}}>Ver más</Text>
+                                    </MenuOption>
+                                </ScrollView>
+                            </MenuOptions>
+                        </Menu>
+                    
+                    {
+                    /*<TouchableOpacity onPress={DropdownMenu}>
                         <Image source={notifications} style={{
                         width: 20,
                         height: 20,
                         marginTop: 30,
                         }}></Image>
-                    </TouchableOpacity>
+                    </TouchableOpacity>*/
+                    }
+
                 </HStack>
                 {
                 // End hamburger Menu Button, logo and notification button... 
+                }
+
+                
+                {
+                // Welcome Text and Name user
                 }
                 <View style={{
                     flexDirection: 'row',
@@ -182,11 +250,20 @@ export default function Home3() {
                     <Text style={{
                         fontSize: 20,
                         fontWeight: 'bold',
-                        color: 'black',
-                    }}>Bienvenido/a, NAME</Text>
+                        color: '#009870',
+                    }}>Bienvenido/a, Nombre</Text>
                     
 
                 </View>
+
+                {
+                // END Welcome Text and Name user
+                }
+
+
+                {
+                // Description Text 
+                }
                 <View style={{
                     flexDirection: 'row',
                     alignItems: 'center',
@@ -197,13 +274,24 @@ export default function Home3() {
                     
                     <Text style={{
                         fontSize: 15,
-                        color: 'black',
-                        textAlign: 'justify',
+                        color: 'gray',
+                        textAlign: "justify",
+                        marginLeft: 20,
+                        marginRight: 20,
+                        
                     }}>Nuestro objetivo es fomentar la cultura del autocuidado y la salud integral, encaminada 
-                    a la Promoción de la Salud(PS)física, mental y social de los miembros de la comunidad 
-                    educativa y al reconocimiento del campus como un entorno saludable .</Text>
+                    a la Promoción de la Salud (PS) física, mental y social de los miembros de la comunidad 
+                    educativa y al reconocimiento del campus como un entorno saludable.</Text>
                     
                 </View>
+
+                {
+                // END Description Text 
+                }
+
+                {
+                // Components of the home
+                }
 
                 <View style={{
                     flexDirection: 'row',
@@ -215,16 +303,15 @@ export default function Home3() {
                     <Inicio />
 
                 </View>
+
+                {
+                // END Components of the home
+                }
+
+
             </Animated.View>
-            
-            
-            
-            
 
         </Animated.View>
-
-        
-
         </SafeAreaView>
     );
     }

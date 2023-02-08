@@ -17,7 +17,11 @@ function HomeScreen({ navigation }) {
 
         <View zIndex={2} top={'240px'} left={'130px'} width={90} height={90} borderColor={'amber.100'}>
             <Box width={'auto'} height={'auto'}>
-                <Image source={require('../../assets/log_blanck.png')} alt="image" width={'auto'} height={20}/>
+                <Image source={require('../../assets/log_blanck.png')} 
+                alt="image" 
+                width={'auto'} 
+                height={20}
+                position={'relative'}/>
             </Box>
         </View>
         {
@@ -52,22 +56,28 @@ function HomeScreen({ navigation }) {
                                 borderColor="coolGray.200" 
                                 
                                 shadow="3" 
-                                bg={isPressed ? '#009870' : isHovered ? 'white' : '#009881'} p="5" rounded="8" style={{
+                                bg={isPressed ? '#009895' : isHovered ? 'white' : '#009881'} p="5" rounded="8" style={{
                                     //backgroundColor: "#79D70F",
                                     transform: [{
                                 scale: isPressed ? 0.96 : 1
                                 }]
                             }}>
                                 
-                                <Box>
-                                    <AspectRatio w="100%" ratio={16 / 9}>
+                                <Box style={{
+                                            alignSelf: 'center',
+                                            top: 10,
+                                        }}>
+                                    
                                         <Image source={vida} alt="image"/>
-                                    </AspectRatio>
+                                    
                                 </Box>
                                 <Stack p="4" space={3}> 
                                     <Stack space={2}>
                                         <Heading fontSize={15} ml="-1" alignContent='center' style={
-                                            {color: 'white'}
+                                            {color: 'white',
+                                            alignSelf: 'center',
+                                            top: 0,
+                                        }
                                         }>
                                             Con sentido UAO
                                         </Heading>
@@ -83,14 +93,13 @@ function HomeScreen({ navigation }) {
                             <Box  width={170} height={180} rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
                             borderColor: "white",
                             backgroundColor: "white",
-                            borderBottomStartRadius: 100,
+                            borderBottomLeftRadius: 100,
                             }} _web={{
-                            shadow: 2,
                             borderWidth: 0,
-                            borderBottomStartRadius: 100,
+                            borderBottomLeftRadius: 100,
                             }} _light={{
                             backgroundColor: "white",
-                            borderBottomStartRadius: 100,
+                            borderBottomLeftRadius: 100,
                             }}>
                             <Pressable>
                             {({
@@ -103,25 +112,34 @@ function HomeScreen({ navigation }) {
                                 borderWidth="0" 
                                 borderColor="coolGray.300" 
                                 shadow="3" 
-                                bg={isPressed ? '#00C15E' : isHovered ? 'white' : '#79D70F'} 
+                                bg={isPressed ? '#79D760' : isHovered ? 'white' : '#79D70F'} 
                                 p="5" rounded="8" style={{
                                 transform: [{
                                 scale: isPressed ? 0.96 : 1
                                 }]
                                 }}
                                 _web={{
-                                    shadow: 2,
-                                    borderWidth: 0
+                                    
+                                    borderWidth: 0,
+                                    borderBottomLeftRadius: 100,
                                 }}>
-                                    <Box alignContent='center'>
-                                        <AspectRatio w="100%" ratio={16 / 9}>
+                                    <Box style={{
+                                            alignSelf: 'center',
+                                            top: 10,
+                                        }}>
+                                        
                                             <Image source={nutri} alt="image" />
-                                        </AspectRatio>
+                                        
                                     </Box>
                                     <Stack p="4" space={3}>
                                         <Stack space={2}>
                                             <Heading fontSize={15} ml="-1" style={
-                                            {color: 'white'}
+                                            {
+                                                color: 'white',
+                                                alignSelf: 'center',
+                                                top: 1,
+                                            
+                                            }
                                             }>
                                                 AliMENTE
                                             </Heading>
@@ -142,8 +160,6 @@ function HomeScreen({ navigation }) {
                         backgroundColor: "white",
                         borderTopRightRadius: 20,
                         }} _web={{
-                        shadow: 2,
-                        borderWidth: 0,
                         borderTopRightRadius: 20,
                         }} _light={{
                         backgroundColor: "white",
@@ -160,21 +176,25 @@ function HomeScreen({ navigation }) {
                                 borderWidth="0" 
                                 borderColor="coolGray.300" 
                                 shadow="3" 
-                                bg={isPressed ? '#D32630' : isHovered ? 'white' : '#D32626'} p="5" rounded="8" style={{
+                                bg={isPressed ? '#D32660' : isHovered ? 'white' : '#D32626'} p="5" rounded="8" style={{
                                 transform: [{
                                 scale: isPressed ? 0.96 : 1
                                 }]
                             }}>
                                 
-                                <Box>
-                                    <AspectRatio w="100%" ratio={16 / 9}>
-                                        <Image source={fisic} alt="image" />
-                                    </AspectRatio>                                   
+                                <Box style={{
+                                            alignSelf: 'center',
+                                            top: 10,
+                                        }}>
+                                    
+                                        <Image source={fisic} alt="image" />                                                                     
                                 </Box>
                                 <Stack p="4" space={3}> 
                                     <Stack space={2}>
-                                        <Heading fontSize="15" ml="-1"style={
-                                            {color: 'white'}
+                                        <Heading fontSize="13" ml="-1"style={
+                                            {color: 'white',
+                                            alignSelf: 'center',
+                                            top: 1}
                                         }>
                                             Autonomos en movimiento
                                         </Heading>                                        
@@ -191,8 +211,7 @@ function HomeScreen({ navigation }) {
                             backgroundColor: "white",
                             borderTopLeftRadius: 100,
                             }} _web={{
-                            shadow: 2,
-                            borderWidth: 0,
+                            
                             borderTopLeftRadius: 100,
                             }} _light={{
                             backgroundColor: "white",
@@ -208,21 +227,27 @@ function HomeScreen({ navigation }) {
                                 borderWidth="0" 
                                 borderColor="coolGray.300" 
                                 shadow="3" 
-                                bg={isPressed ? 'coolGray.200' : isHovered ? 'coolGray.200' : '#F5A31A'} p="5" rounded="8" style={{
+                                bg={isPressed ? '#F5A364' : isHovered ? 'coolGray.200' : '#F5A31A'} p="5" rounded="8" style={{
                                 transform: [{
                                 scale: isPressed ? 0.96 : 1
                                 }]
                             }}>
                                     <Box 
+                                        style={{
+                                            alignSelf: 'center',
+                                            top: 10,
+                                        }}
                                         >
-                                        <AspectRatio w="100%" ratio={16 / 9}>
-                                            <Image source={ali} alt="image" />
-                                        </AspectRatio>                                        
+                                            <Image source={ali} alt="image" />                                               
                                     </Box>
                                     <Stack p="4" space={3}>
-                                        <Stack space={2}>
-                                            <Heading fontSize="15" ml="-1"style={
-                                            {color: 'white'}
+                                        <Stack space={2} >
+                                            <Heading fontSize="15" ml="-1" style={
+                                            {
+                                                color: 'white',
+                                                alignSelf: 'center',
+                                                top: 10,
+                                            }
                                             }>
                                                 Vida UAO
                                             </Heading>                                                
