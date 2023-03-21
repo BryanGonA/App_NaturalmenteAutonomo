@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Pressable, VStack, Box, Divider, Heading, AspectRatio, Image, Text, Center, HStack, Stack, NativeBaseProvider, View } from 'native-base';
 import { StyleSheet } from 'react-native';
 
-import vida from '../../assets/icon_vida.png';
-import fisic from '../../assets/icon_fisic.png';
-import ali from '../../assets/icon_ali.png';
-import nutri from '../../assets/icon_nutri.png';
+import vida from '../../assets/logo/icon_vida.png';
+import fisic from '../../assets/logo/icon_fisic.png';
+import ali from '../../assets/logo/icon_ali.png';
+import nutri from '../../assets/logo/icon_nutri.png';
 
 
 function HomeScreen({ navigation }) {
@@ -17,7 +17,7 @@ function HomeScreen({ navigation }) {
 
         <View zIndex={2} top={'240px'} left={'130px'} width={90} height={90} borderColor={'amber.100'}>
             <Box width={'auto'} height={'auto'}>
-                <Image source={require('../../assets/log_blanck.png')} 
+                <Image source={require('../../assets/logo/log_blanck.png')} 
                 alt="image" 
                 width={'auto'} 
                 height={20}

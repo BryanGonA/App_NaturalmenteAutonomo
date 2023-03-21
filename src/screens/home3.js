@@ -22,9 +22,9 @@ import logout from '../assets/logout.png';
 // Icons and Images...
 import menu from '../assets/menu.png';
 import close from '../assets/close.png';
-import logo from "../assets/log.png";
+import logo from "../assets/logo/log.png";
 import { HStack } from 'native-base';
-import avatar from '../assets/avatar.png';
+import avatar from '../assets/images/avatar.png';
 
 const TopBar = createBottomTabNavigator();
 
