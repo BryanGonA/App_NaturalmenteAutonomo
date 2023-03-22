@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
     paddingHorizontal: 16,
-    borderRadius: 20,
+    borderRadius: 30,
   },
   profileContainer: {
     flexDirection: 'row',
@@ -34,13 +34,14 @@ const styles = StyleSheet.create({
   },
   menu: {
     position: 'absolute',
-    top: 60,
+    top: 75,
     alignSelf: 'flex-end',
     width: 200,
     backgroundColor: 'white',
     elevation: 4,
     borderRadius: 4,
     padding: 8,
+    right: 26,
   },
   menuTitle: {
     fontWeight: 'bold',
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 10,
     marginTop: 8,
-                top: 15,
+    top: 15,
   },
   menuText: {
     marginLeft: 8,
@@ -70,6 +71,41 @@ const styles = StyleSheet.create({
   notificationText: {
     marginLeft: 8,
   },
+  menuContainer: {
+    flex: 1,
+    backgroundColor: '#FFF',
+    padding: 20,
+  },
+  menuTitl: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  menuOptions: {
+    marginTop: 10,
+  },
+  menuOption: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  menuOptionText: {
+    marginLeft: 8,
+  },
+  menuDrawer: {
+    
+    top: 0,
+    alignSelf: 'flex-start',
+    justifyContent: 'flex-start',
+    alignContent: 'center',
+    width: 200,
+    height: 200,
+    backgroundColor: 'white',
+    elevation: 4,
+    borderRadius: 4,
+    padding: 8,
+    right: 1,
+  },
+
 });
 
 export default styles;

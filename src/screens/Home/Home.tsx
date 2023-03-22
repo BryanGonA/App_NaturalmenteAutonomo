@@ -27,6 +27,7 @@ export default function Home() {
             <AppBar
                 onMenuPress={handleMenuPress}
                 onNotificationsPress={handleNotificationsPress}
+                onProfilePress={handleProfilePress}
             />
             <View style={styles.content}>
                 <Text>Contenido de la pantalla de inicio</Text>
