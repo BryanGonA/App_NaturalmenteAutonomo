@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import AppBar from "../../components/AppBar/AppBar";
+import Buttons from "../ButtonsHome/buttonsLineas"
 //import Photo from "../../assets/images/avatar.png";
 
 
@@ -12,7 +13,7 @@ export default function Home() {
     const handleMenuPress = () => {
           // Aquí puedes abrir el menú lateral de la aplicación
     };
-      
+    
     const handleNotificationsPress = () => {
           // Aquí puedes abrir la pantalla de notificaciones de la aplicación
     };
@@ -30,7 +31,7 @@ export default function Home() {
                 onProfilePress={handleProfilePress}
             />
             <View style={styles.content}>
-                <Text>Contenido de la pantalla de inicio</Text>
+                <Buttons navigation={navigation} />
             </View>
         </View>
     );

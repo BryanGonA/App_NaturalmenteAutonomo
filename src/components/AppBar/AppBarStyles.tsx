@@ -72,19 +72,30 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   menuContainer: {
-    flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#FFF',
     padding: 20,
+    width: '50%',
+
   },
   menuTitl: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  menuOptions: {
-    marginTop: 10,
+  slide: {
+    position: 'absolute',
+    top: 75,
+    alignSelf: 'flex-end',
+    width: 200,
+    backgroundColor: 'white',
+    elevation: 4,
+    borderRadius: 4,
+    padding: 8,
+    right: 26,
   },
   menuOption: {
+    flexDirection: 'row',
     fontSize: 16,
     marginBottom: 5,
   },
@@ -105,7 +116,33 @@ const styles = StyleSheet.create({
     padding: 8,
     right: 1,
   },
-
+  mainContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  closeButton: {
+    backgroundColor: '#ddd',
+    paddingVertical: 12,
+    marginTop: 16,
+  },
+  closeButtonText: {
+    textAlign: 'center',
+    color: '#333',
+    fontWeight: 'bold',
+  },
+  avatarContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    top: 30,
+    width: '95%',
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    paddingHorizontal: 16,
+    borderRadius: 30,
+  },
 });
 
 export default styles;
