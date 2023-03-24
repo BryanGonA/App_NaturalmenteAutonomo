@@ -25,11 +25,13 @@ export default function Home() {
 
     return (
         <View style={styles.container}>
-            <AppBar
-                onMenuPress={handleMenuPress}
-                onNotificationsPress={handleNotificationsPress}
-                onProfilePress={handleProfilePress}
-            />
+            <View style={styles.appBarContainer}>
+                <AppBar
+                    onMenuPress={handleMenuPress}
+                    onNotificationsPress={handleNotificationsPress}
+                    onProfilePress={handleProfilePress}
+                />
+            </View>
             <View style={styles.content}>
                 <Buttons navigation={navigation} />
             </View>
@@ -40,14 +42,25 @@ export default function Home() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         alignItems: "center",
         justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#fff",
+    },
+    appBarContainer: {
+        height: "100%",
+        zIndex: 1,
+        alignContent: "flex-start",
+        alignSelf: "flex-start",
+
     },
     content: {
-        flex: 1,
         alignItems: "center",
         justifyContent: "center",
+        marginTop: 60,
+        position: "absolute",
+        
     },
 
 });

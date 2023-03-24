@@ -1,11 +1,12 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    top: 30,
+    top: 35,
     width: '95%',
     backgroundColor: '#fff',
     borderBottomWidth: 1,
@@ -49,16 +50,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   menuSeparator: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
     marginBottom: 8,
-  },
-  profilePhoto: {
-    width: 60,
-    height: 60,
-    borderRadius: 10,
-    marginTop: 8,
-    top: 15,
+    marginTop: 38,
   },
   menuText: {
     marginLeft: 8,
@@ -73,48 +66,25 @@ const styles = StyleSheet.create({
   },
   menuContainer: {
     flexDirection: 'column',
-    backgroundColor: '#FFF',
-    padding: 20,
+    backgroundColor: '#79D70F',
+    padding: 16,
     width: '50%',
-
-  },
-  menuTitl: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  slide: {
-    position: 'absolute',
-    top: 75,
-    alignSelf: 'flex-end',
-    width: 200,
-    backgroundColor: 'white',
-    elevation: 4,
-    borderRadius: 4,
-    padding: 8,
-    right: 26,
+    height: '100%',
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    alignContent: 'flex-start',
+    alignSelf: 'flex-start',
   },
   menuOption: {
     flexDirection: 'row',
-    fontSize: 16,
     marginBottom: 5,
+    marginTop: 7,
+    alignItems: 'center',
   },
   menuOptionText: {
     marginLeft: 8,
-  },
-  menuDrawer: {
-    
-    top: 0,
-    alignSelf: 'flex-start',
-    justifyContent: 'flex-start',
-    alignContent: 'center',
-    width: 200,
-    height: 200,
-    backgroundColor: 'white',
-    elevation: 4,
-    borderRadius: 4,
-    padding: 8,
-    right: 1,
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   mainContent: {
     flex: 1,
@@ -122,27 +92,45 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   closeButton: {
-    backgroundColor: '#ddd',
+    backgroundColor: 'transparent',
     paddingVertical: 12,
     marginTop: 16,
+    alignContent: 'center',
+    alignSelf: 'flex-end',
   },
   closeButtonText: {
     textAlign: 'center',
     color: '#333',
     fontWeight: 'bold',
   },
-  avatarContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    top: 30,
-    width: '95%',
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    paddingHorizontal: 16,
-    borderRadius: 30,
+  contenido: {
+    top: 1,
+    alignSelf: 'flex-start',
+    width: '100%',
+    backgroundColor: 'transparent',
+    borderRadius: 4,
+    padding: 1,
+    color: 'white',
   },
+  avatarText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+    marginTop: 2,
+  },
+  avatar: {
+    width: 60,
+    height: 60,
+    borderRadius: 10,
+    marginTop: 8,
+  },
+  avatarText1: {
+    color: 'white',
+    fontSize: 11,
+    marginTop: 2,
+  },
+  
+
 });
 
 export default styles;

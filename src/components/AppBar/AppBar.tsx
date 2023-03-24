@@ -1,8 +1,10 @@
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import React, { useRef, useState } from 'react';
-import { Animated, Image, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Image, Modal, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 
 import styles from './AppBarStyles';
+
+const { width: windowWidth } = Dimensions.get('window');
 
 interface AppBarProps {
   onMenuPress: () => void;
@@ -16,25 +18,39 @@ const AppBar: React.FC<AppBarProps> = ({
   onProfilePress,
 }) => {
   const [notifications, setNotifications] = useState<number>(2);
-  const [showAppBar, setShowAppBar] = useState(true);
   const [appBarHeightValue] = useState(60);
   const appBarHeight = useRef(new Animated.Value(appBarHeightValue)).current;
   const [showMenu, setShowMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const menuRotation = useRef(new Animated.Value(0)).current;
+  const menuAnimation = useRef(new Animated.Value(0)).current;
+  const mainContentAnimation = useRef(new Animated.Value(0)).current;
   
+  const menuTranslateX = menuAnimation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -0.5 * windowWidth],
+  });
+
+
   const handleNotificationsPress = () => {
     setNotifications(0);
     setShowNotifications(!showNotifications);
     onNotificationsPress();
   };
 
-  const toggleAppBar = () => {
-    setShowAppBar(!showAppBar); // resetear la rotación del botón de menú
-  };
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
+    Animated.timing(menuAnimation, {
+      toValue: showMenu ? 0 : 1,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+    Animated.timing(mainContentAnimation, {
+      toValue: showMenu ? 0 : 1,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
     onMenuPress();
   };
   
@@ -61,31 +77,36 @@ const AppBar: React.FC<AppBarProps> = ({
 
   const renderMenu = () => {
     return (
-      <Modal
-        animationType="slide"
-        visible={showMenu}
-        onRequestClose={() => toggleMenu()}
-        style={styles.slide}
+      <Animated.View
+      style={[
+        styles.menuContainer,
+        { transform: [{ translateX: menuTranslateX }] },
+      ]}
       >
-        <View style={styles.menuContainer}>
-          <Text style={styles.menuTitle}>Side Menu</Text>
-          <TouchableOpacity style={styles.menuOption} onPress={onProfilePress}>
-            <MaterialIcons name="person" size={24} color="black" />
-            <Text style={styles.menuOptionText}>Profile</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.menuOption}>
-            <AntDesign name="setting" size={24} color="black" />
-            <Text style={styles.menuOptionText}>Settings</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.menuOption}>
-            <MaterialIcons name="help" size={24} color="black" />
-            <Text style={styles.menuOptionText}>Help</Text>
-          </TouchableOpacity>
+        <View style={styles.contenido}>
           <TouchableOpacity style={styles.closeButton} onPress={() => toggleMenu()}>
-            <Text style={styles.closeButtonText}>Close</Text>
+            <MaterialIcons name="close" size={34} color="white" />
+          </TouchableOpacity>
+          <Image source={require('../../assets/images/avatar.png')} style={styles.avatar} />
+            <Text style={styles.avatarText}>Karla Gonzalez</Text>
+            <TouchableOpacity>
+            <Text style={styles.avatarText1}>Perfil</Text>
+            </TouchableOpacity>
+          <View style={styles.menuSeparator} />
+          <TouchableOpacity style={styles.menuOption} onPress={onProfilePress}>
+            <MaterialIcons name="home" size={35} color="white" />
+            <Text style={styles.menuOptionText}>Inicio</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuOption}>
+            <MaterialIcons name="event" size={35} color="white" />
+            <Text style={styles.menuOptionText}>Eventos</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuOption}>
+            <AntDesign name="setting" size={35} color="white" />
+            <Text style={styles.menuOptionText}>Ajustes</Text>
           </TouchableOpacity>
         </View>
-      </Modal>
+      </Animated.View>
     );
     
   };

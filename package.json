@@ -33,6 +33,7 @@
     "react-bootstrap": "^2.7.2",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.7",
+    "react-icons": "^4.8.0",
     "react-native": "0.71.4",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-pager-view": "6.1.2",

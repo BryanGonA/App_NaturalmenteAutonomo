@@ -24,20 +24,9 @@ export default function AuthNav() {
             }}
         
         >
-
             <RootStack.Screen
                 name="Home"
                 component={Home1}
-                options={{ headerShown: false }}
-            />
-            <RootStack.Screen
-                name="Settings"
-                component={Settings}
-                options={{ headerShown: false }}
-            />
-            <RootStack.Screen
-                name="Alimente"
-                component={HomeScreen}
                 options={{ headerShown: false }}
             />
         </RootStack.Navigator>
