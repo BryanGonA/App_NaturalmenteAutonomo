@@ -9,7 +9,11 @@ import Buttons from "../ButtonsHome/buttonsLineas"
 import { MaterialIcons } from '@expo/vector-icons';
 import styles from "./HomeStyles";
 
+
+
+
 export default function Home() {
+    
     const navigation = useNavigation();
     
     const handleMenuPress = () => {
@@ -57,9 +61,15 @@ return (
                 borderBottomRightRadius: 35,
                 
             },
+            
+
         }}
     >
-        <Drawer.Screen name="Home" component={Buttons} />
+        <Drawer.Screen 
+            name="Home" 
+            component={Buttons}
+            
+            />
     </Drawer.Navigator>
     );
 }

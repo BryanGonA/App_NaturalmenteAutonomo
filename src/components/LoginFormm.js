@@ -37,8 +37,7 @@ export default function LoginFormm(props) {
         login({ username, password });
         
     };
-    /* Hook que se utiliza para realizar efectos secundarios en un componente de función. Es un sustituto cercano
-    de `componentDidMount`, `componentDidUpdate` y `componentWillUnmount`.*/
+    
     useEffect(() => {
         if (isLogged === true) {
             <back.Navigator>

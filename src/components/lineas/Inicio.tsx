@@ -18,7 +18,7 @@ const nutri = require("../../assets/logo/icon_nutri.png");
 
 function HomeScreen() {
   return (
-    <View top={"10px"}>
+    <View top={"10px"} style={{alignItems: 'center', justifyContent: 'center', alignSelf: 'center'}}>
       <View
         zIndex={2}
         top={"240px"}
