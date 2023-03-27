@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Home from '../screens/home'
+
 import Home1 from '../screens/Home/Home'
-import Home3 from '../screens/home3'
+
 
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from '../components/lineas/alimente/Alimente_home';

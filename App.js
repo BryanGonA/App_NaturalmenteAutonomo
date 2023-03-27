@@ -9,7 +9,6 @@ import { StyleSheet, Animated, Image, SafeAreaView, TouchableOpacity, View  } fr
 import AuthNav from './src/navigation/authNav';
 import { NativeBaseProvider, Text, Box } from "native-base";
 import GenNav from './src/navigation/genNav';
-import { MenuProvider } from 'react-native-popup-menu';
 
 export const LoginContext = createContext();
 export default function Mystack() {
@@ -17,7 +16,6 @@ export default function Mystack() {
 
 
   return (
-        <MenuProvider>
           <NavigationContainer style={styles.nav}>
             <NativeBaseProvider>   
                 <LoginContext.Provider value={{ setUser: setUser, user }}>
@@ -25,7 +23,7 @@ export default function Mystack() {
                 </LoginContext.Provider>
             </NativeBaseProvider>
           </NavigationContainer>
-        </MenuProvider>
+
   );
 }
 
