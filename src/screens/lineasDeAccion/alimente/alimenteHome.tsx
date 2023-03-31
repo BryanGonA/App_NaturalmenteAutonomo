@@ -5,6 +5,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import styles from "./alimenteStyles";
 import Events from "../../../components/Events/eventCard";
 import { ScrollView } from "react-native-gesture-handler";
+import SidebarMenu from "../../../components/sideBar/SideBar";
+
 
 
 //Images
@@ -12,7 +14,7 @@ const event1 = require('../../../assets/events/agricult.jpg');
 const event2 = require('../../../assets/events/cafeUAO.jpg');
 
 export default function AlimenteHome() {
-    const navigation = useNavigation();
+
 
     const handlePressButton = () => {
         

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Text, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import styles from './AppBarStyles';
+import styles from './sideBarStyles';
 
 
 export default function SidebarMenu(props: DrawerContentComponentProps) {
@@ -27,7 +27,7 @@ export default function SidebarMenu(props: DrawerContentComponentProps) {
       <View style={styles.itemContainer}>
         <DrawerItem
           label="Inicio"
-          onPress={() => props.navigation.navigate('Pantalla1')}
+          onPress={() => props.navigation.navigate('Home1')}
           activeBackgroundColor="#fff"
           activeTintColor="#000"
           labelStyle={styles.itemText}
@@ -43,7 +43,7 @@ export default function SidebarMenu(props: DrawerContentComponentProps) {
         />
         <DrawerItem
           label="Ajustes"
-          onPress={() => props.navigation.navigate('Pantalla2')}
+          onPress={() => props.navigation.navigate('Settings')}
           activeBackgroundColor="#fff"
           activeTintColor="#000"
           labelStyle={styles.itemText}

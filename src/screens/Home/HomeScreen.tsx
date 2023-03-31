@@ -1,20 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { View, TouchableOpacity, Image } from "react-native";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import AppBar from "../../components/AppBar/AppBar1";
+import SidebarMenu from "../../components/sideBar/SideBar";
 import Buttons from "../../components/ButtonsHome/buttonsLineas"
-//import Photo from "../../assets/images/avatar.png";
 import { MaterialIcons } from '@expo/vector-icons';
 import styles from "./HomeStyles";
 
-
+import AlimenteHome from "../lineasDeAccion/alimente/alimenteHome";
+import autoEnMov from "../lineasDeAccion/autonomosEnMov/autoEnMov";
+import SettingsScreen from "../Settings/Settings";
 
 
 export default function Home() {
     
-    const navigation = useNavigation();
     
     const handleMenuPress = () => {
           // Aquí puedes abrir el menú lateral de la aplicación
@@ -33,7 +32,7 @@ export default function Home() {
 return (
     
         <Drawer.Navigator 
-            drawerContent={props => <AppBar {...props} />}
+            drawerContent={props => <SidebarMenu {...props} />}
             screenOptions={{
                 headerTitle: () => {
                     return (
@@ -67,10 +66,22 @@ return (
             }}
         >
             <Drawer.Screen 
-                name="Home" 
+                name="Home1" 
                 component={Buttons}
-                
-                />
+            />
+            <Drawer.Screen
+                name="Alimente"
+                component={AlimenteHome}
+            />
+            <Drawer.Screen
+                name="AEM"
+                component={autoEnMov}
+            />
+            <Drawer.Screen
+                name="Settings"
+                component={SettingsScreen}
+            />
+
         </Drawer.Navigator>
     );
 }

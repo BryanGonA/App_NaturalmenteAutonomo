@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         width: '100%',
         height: '100%',
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        padding: 10,
+        
     },
     background: {
         resizeMode: "cover",
@@ -17,10 +21,10 @@ const styles = StyleSheet.create({
     header: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 30,
         backgroundColor: '#57D400',
         width: '100%',
-        height: '15%',
+        height: '16%',
+        borderRadius: 10,
     },
     title: {
         fontSize: 25,
@@ -61,6 +65,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginLeft: 10,
         marginRight: 10,
+        
     },
     eventsTitle: {
         fontSize: 15,
@@ -72,6 +77,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
         justifyContent: 'center',
+        borderRadius: 10,
+        backgroundColor: '#f2fceb',
     },
 });
 
