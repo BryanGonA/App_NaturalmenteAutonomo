@@ -1,24 +1,29 @@
 import React, {
   useState,
-  createContext, 
+  createContext,
+  useMemo,
 } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Animated, Image, SafeAreaView, TouchableOpacity, View  } from 'react-native';
-
+import { StyleSheet  } from 'react-native';
 
 import AuthNav from './src/navigation/authNav';
-import { NativeBaseProvider, Text, Box } from "native-base";
+import { NativeBaseProvider } from "native-base";
 import GenNav from './src/navigation/genNav';
 
-export const LoginContext = createContext();
-export default function Mystack() {
-  const [user, setUser] = useState('');
+export const LoginContext = createContext({
+  setUser: () => {},
+  user: null,
+});
 
+export default function Mystack() {
+
+  const [user, setUser] = useState(null);
+  const contextValue = useMemo(() => ({ setUser, user }), [user]);
 
   return (
           <NavigationContainer style={styles.nav}>
             <NativeBaseProvider>   
-                <LoginContext.Provider value={{ setUser: setUser, user }}>
+                <LoginContext.Provider value={contextValue}>
                   {user ? <AuthNav /> : <GenNav />}
                 </LoginContext.Provider>
             </NativeBaseProvider>

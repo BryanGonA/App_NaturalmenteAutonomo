@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignSelf: 'center',
       margin: -50,
+
     },
     logos: {
       height: 90,

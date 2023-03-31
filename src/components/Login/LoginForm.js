@@ -9,7 +9,7 @@ import {
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
 import { Input, Icon, Text, Item, Button } from '@rneui/base';
-import useUser from '../hooks/useUser';
+import useUser from '../../hooks/useUser';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/home';
 

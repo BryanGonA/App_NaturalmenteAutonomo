@@ -1,24 +1,23 @@
-/* The above code is a login-form that uses react-hook-form to validate. 
-*/
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { TextInput } from "react-native-paper";
-import useUser from '../hooks/useUser';
-import { createStackNavigator } from '@react-navigation/stack';
+import useUser from '../../hooks/useUser';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from '@rneui/base';
-import HomeScreen from '../screens/Home/Home';
-import lock from '../assets/icons/lock.svg';
-import eye from '../assets/icons/eye.svg';
-import eyeSlash from '../assets/icons/eye-slash.svg';
+import { useNavigation } from '@react-navigation/native';
+
+//
+import lock from '../../assets/icons/lock.svg';
+import eye from '../../assets/icons/eye.svg';
+import eyeSlash from '../../assets/icons/eye-slash.svg';
 
 export default function LoginFormm(props) {
     
+    const navigation = useNavigation();
     const {login, isLogged } = useUser();
     const { control, handleSubmit, formState: { errors }, getValues, setValue } = useForm();
-
-    const back = createStackNavigator(); 
 
     const onSubmit = async (data) => {
         //Quitar hasta efectuar validaciones
@@ -38,13 +37,14 @@ export default function LoginFormm(props) {
     
     useEffect(() => {
         if (isLogged === true) {
-            <back.Navigator>
+            /*<back.Navigator>
                 <back.Screen
                 name="Home"
                 component={HomeScreen}
                 options={{ headerShown: false }}
                 />
-            </back.Navigator>
+            </back.Navigator>*/
+            navigation.navigate('Home'); 
         }
     }, [isLogged]);
 

@@ -20,6 +20,7 @@ return (
         component={LoginPage}
         options={{ headerShown: false }}
     />
+    
 
     </Gentack.Navigator>
 );

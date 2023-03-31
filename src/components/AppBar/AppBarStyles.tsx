@@ -1,136 +1,139 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
+
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
+    flex: 1,
+    backgroundColor: '#57D400',
+  },
+  exit: {
+    backgroundColor: 'transparent',
+    marginTop: 1,
+    alignContent: 'center',
+    alignSelf: 'flex-end',
+    marginRight: 20,
+  },
+
+  header: {
+    flexDirection: 'column',
+    height: 100,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    marginLeft: 20,
+  },
+  profile: {
+    width: 60,
+    height: 60,
+    borderRadius: 40,
+    borderWidth: 2,
+    resizeMode: 'contain',
+  },
+  name: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginTop: 10,
+    color: '#fff',
+  },
+  textProfile: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    marginTop: 2,
+    color: '#fff',
+  },
+  itemContainer: {
+    flex: 1,
+    marginTop: 50,
+    marginLeft: 10,
+  },
+  item: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    top: 35,
-    width: '95%',
-    backgroundColor: '#fff',
+    padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    paddingHorizontal: 16,
-    borderRadius: 30,
+    borderBottomColor: '#eee',
   },
-  profileContainer: {
+  itemText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+
+  notifications: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+    width: '100%',
+    height: 50,
+    backgroundColor: '#eee',
+  },
+  notificationIconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-  },  
-  logo: {
-    width: 72,
-    height: 32,
-    resizeMode: 'contain',
-    
+    justifyContent: 'center',
   },
-  notificationDot: {
+  notificationCountContainer: {
     position: 'absolute',
     top: 0,
     right: 0,
-    width: 8,
-    height: 8,
-    borderRadius: 4,
     backgroundColor: 'red',
-  },
-  menu: {
-    position: 'absolute',
-    top: 75,
-    alignSelf: 'flex-end',
-    width: 200,
-    backgroundColor: 'white',
-    elevation: 4,
-    borderRadius: 4,
-    padding: 8,
-    right: 26,
-  },
-  menuTitle: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  menuSeparator: {
-    marginBottom: 8,
-    marginTop: 38,
-  },
-  menuText: {
-    marginLeft: 8,
-  },
-  notification: {
-    flexDirection: 'row',
+    borderRadius: 10,
+    width: 20,
+    height: 20,
     alignItems: 'center',
-    marginBottom: 8,
+    justifyContent: 'center',
+  },
+  notificationCountText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  notificationContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  notificationTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
   notificationText: {
-    marginLeft: 8,
-  },
-  menuContainer: {
-    flexDirection: 'column',
-    backgroundColor: '#79D70F',
-    padding: 16,
-    width: '50%',
-    height: '100%',
-    borderColor: 'rgba(0, 0, 0, 0.1)',
-    alignContent: 'flex-start',
-    alignSelf: 'flex-start',
-  },
-  menuOption: {
-    flexDirection: 'row',
-    marginBottom: 5,
-    marginTop: 7,
-    alignItems: 'center',
-  },
-  menuOptionText: {
-    marginLeft: 8,
-    color: 'white',
     fontSize: 16,
-    fontWeight: 'bold',
+    marginBottom: 20,
   },
-  mainContent: {
-    flex: 1,
+  footer: {
+    alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#fff',
+    marginTop: 350,
+    borderRadius: 30,
+  },
+  logout: {
+    fontSize: 16,
+    color: 'black',
     alignItems: 'center',
   },
-  closeButton: {
-    backgroundColor: 'transparent',
-    paddingVertical: 12,
-    marginTop: 16,
+  logoutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     alignContent: 'center',
-    alignSelf: 'flex-end',
+    backgroundColor: '#fff',
+    width: 200,
+    height: 50,
+    borderRadius: 30,
   },
-  closeButtonText: {
-    textAlign: 'center',
-    color: '#333',
-    fontWeight: 'bold',
+
+  icon: {
+    width: 30,
+    height: 30,
+    alignSelf: 'center',
   },
-  contenido: {
-    top: 1,
-    alignSelf: 'flex-start',
-    width: '100%',
-    backgroundColor: 'transparent',
-    borderRadius: 4,
-    padding: 1,
-    color: 'white',
-  },
-  avatarText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'white',
-    marginTop: 2,
-  },
-  avatar: {
-    width: 60,
-    height: 60,
-    borderRadius: 10,
-    marginTop: 8,
-  },
-  avatarText1: {
-    color: 'white',
-    fontSize: 11,
-    marginTop: 2,
-  },
-  
 
 });
 
 export default styles;
+

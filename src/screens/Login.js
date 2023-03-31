@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ImageBackground, Dimensions} from 'react-native';
 import {Text,Image } from '@rneui/base';
-import LoginForm from '../components/LoginFormm';
+import LoginForm from '../components/Login/LoginFormm';
     
     const screenHeight = Dimensions.get('window').height;
     const screenWidth = Dimensions.get('window').width;

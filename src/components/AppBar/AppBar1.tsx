@@ -3,124 +3,60 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Text, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function SidebarMenu(props: DrawerContentComponentProps) {
-  const [showNotification, setShowNotification] = useState(false);
-  const [readNotificationsCount, setReadNotificationsCount] = useState(0);
-  const notificationsCount = 3 - readNotificationsCount; // Reemplaza esto con el número total de notificaciones
+import styles from './AppBarStyles';
 
-  const handleReadNotifications = () => {
-    setReadNotificationsCount(3); // Reemplaza esto con el número total de notificaciones
-  };
+
+export default function SidebarMenu(props: DrawerContentComponentProps) {
 
   return (
-    <DrawerContentScrollView {...props}>
+    <DrawerContentScrollView {...props}
+      style={styles.container}
+    >
+      <View style={styles.exit}>
+        <TouchableOpacity onPress={() => props.navigation.closeDrawer()}>
+          <MaterialIcons name="close" size={30} color="white" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.header}>
-        <Image style={styles.logo} source={require('../../assets/logo/logo_uao.png')} />
+        <Image style={styles.profile} source={require('../../assets/images/avatar1.jpg')} />
+        <Text style={styles.name}>Nombre del usuario</Text>
+        <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
+        <Text style={styles.textProfile}>Ver perfil</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.itemContainer}>
         <DrawerItem
-          label="Pantalla 1"
+          label="Inicio"
           onPress={() => props.navigation.navigate('Pantalla1')}
+          activeBackgroundColor="#fff"
+          activeTintColor="#000"
+          labelStyle={styles.itemText}
+          icon={() => <MaterialIcons name="home" type="font-awesome" size={24} color="white" />}
         />
         <DrawerItem
-          label="Pantalla 2"
+          label="Eventos"
           onPress={() => props.navigation.navigate('Pantalla2')}
+          activeBackgroundColor="#fff"
+          activeTintColor="#000"
+          labelStyle={styles.itemText}
+          icon={() => <MaterialIcons name="event" type="font-awesome" size={24} color="white" />}
         />
-        {/* Agrega más opciones de menú aquí */}
+        <DrawerItem
+          label="Ajustes"
+          onPress={() => props.navigation.navigate('Pantalla2')}
+          activeBackgroundColor="#fff"
+          activeTintColor="#000"
+          labelStyle={styles.itemText}
+          icon={() => <MaterialIcons name="settings" type="font-awesome" size={24} color="white" />}
+        />
       </View>
-      <TouchableOpacity style={styles.notifications} onPress={() => {setShowNotification(true); handleReadNotifications()}}>
-        <View style={styles.notificationIconContainer}>
-          <MaterialIcons name="notifications" type="font-awesome" size={24} color="black" />
-          {notificationsCount > 0 && (
-            <View style={styles.notificationCountContainer}>
-              <Text style={styles.notificationCountText}>{notificationsCount}</Text>
-            </View>
-          )}
-        </View>
-      </TouchableOpacity>
-      <Modal
-        visible={showNotification}
-        animationType="slide"
-        transparent={true}
-        onRequestClose={() => setShowNotification(false)}
-      >
-        {/* Agrega el contenido de la notificación emergente aquí */}
-        <View style={styles.notificationContainer}>
-          <Text style={styles.notificationTitle}>Notificaciones</Text>
-          <Text style={styles.notificationText}>Tienes una nueva notificación.</Text>
-          <TouchableOpacity style={styles.closeButton} onPress={() => setShowNotification(false)}>
-            <Text style={styles.closeButtonText}>Cerrar</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.logoutButton}>{/*Aqui va el boton de cerrar sesion, Agregar acción*/}
+          <MaterialIcons name="exit-to-app" size={24} color="black" style={styles.icon}/>
+          <Text style={styles.logout}>Cerrar sesión</Text>
+        </TouchableOpacity>
+      </View>
+      
     </DrawerContentScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    height: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 200,
-    height: 50,
-  },
-  itemContainer: {
-    flex: 1,
-  },
-  notifications: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20,
-    width: '100%',
-    height: 50,
-    backgroundColor: '#eee',
-  },
-  notificationIconContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  notificationCountContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    backgroundColor: 'red',
-    borderRadius: 10,
-    width: 20,
-    height: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  notificationCountText: {
-    color: 'white',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  notificationContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  notificationTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  notificationText: {
-    fontSize: 16,
-    marginBottom: 20,
-  },
-  closeButton: {
-    padding: 10,
-    backgroundColor: '#eee',
-    borderRadius: 5,
-  },
-  closeButtonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});

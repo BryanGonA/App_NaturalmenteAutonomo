@@ -1,9 +1,10 @@
 import React from "react";
+import { View, Text } from "react-native";
 
 //Create a Settings Screen
 const Settings = () => {
     return (
-        <View style={styles.container}>
+        <View >
         <Text>Settings Screen</Text>
         </View>
     );
