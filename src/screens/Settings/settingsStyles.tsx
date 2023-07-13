@@ -1,44 +1,42 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 16,
-    },
-    header: {
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      marginBottom: 16,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    paddingTop: 30,
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderColor: '#ddd',
+    borderWidth: 0.5,
+    borderRadius: 10,
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    marginBottom: 10,
+  },
+  itemIcon: {
+    marginRight: 10,
+  },
+  itemLabel: {
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  backButton: {
+    top: 0,
+    left: 0,
+    padding: 10,
+    marginBottom: 20,
 
-    settingsGroup: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      marginBottom: 16,
-    },
-    settingsGroupTitle: {
-      fontSize: 16,
-      fontWeight: 'bold',
-    },
-    switch: {
-      marginLeft: 8,
-    },
-    image: {
-      width: 100,
-      height: 100,
-      borderRadius: 50,
-      borderWidth: 2,
-      borderColor: '#eee',
-      resizeMode: 'contain',
-    },
-    title: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      marginTop: 16,
-    },
-
+  },
+  backButtonIcon: {
+    width: 25,
+    height: 25,
+  },
   });
 
 export default styles;

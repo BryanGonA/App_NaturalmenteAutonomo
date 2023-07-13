@@ -9,7 +9,6 @@ import styles from "./HomeStyles";
 
 import AlimenteHome from "../lineasDeAccion/alimente/alimenteHome";
 import autoEnMov from "../lineasDeAccion/autonomosEnMov/autoEnMov";
-import SettingsScreen from "../Settings/Settings";
 
 
 export default function Home() {
@@ -76,10 +75,6 @@ return (
             <Drawer.Screen
                 name="AEM"
                 component={autoEnMov}
-            />
-            <Drawer.Screen
-                name="Settings"
-                component={SettingsScreen}
             />
 
         </Drawer.Navigator>
