@@ -28,7 +28,6 @@ export default function Mystack() {
                 </LoginContext.Provider>
             </NativeBaseProvider>
           </NavigationContainer>
-
   );
 }
 
