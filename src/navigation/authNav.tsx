@@ -20,6 +20,7 @@ export default function AuthNav() {
                 component={Settings}
                 options={{ headerShown: false }}
             />
+            
         </RootStack.Navigator>
     );
 }

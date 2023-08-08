@@ -82,7 +82,7 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
         </TouchableOpacity>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.email}>{email}</Text>
-        <Text style={styles.tokens}>Tokens: {user.tokens}</Text>
+        <Text style={styles.tokens}>Puntos: {user.tokens}</Text>
         {newAvatar ? (
           <TouchableOpacity onPress={handleSaveAvatar} style={styles.saveButton}>
             <Text style={styles.saveButtonText}>Guardar</Text>
