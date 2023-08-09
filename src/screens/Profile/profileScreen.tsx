@@ -23,7 +23,7 @@ interface User {
 
 const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
   const navigation = useNavigation();
-  const [user, setUser] = useState<User>({ id: 0, name: '', email: '', avatar: '', tokens: 0 });
+  const [user, setUser] = useState<User>({ id: 0, name: 'Bryan Gonzalez', email: 'bgonzalez@uao.edu.co', avatar: '', tokens: 0 });
   const [newAvatar, setNewAvatar] = useState('');
 
   useEffect(() => {
@@ -80,8 +80,8 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
         <TouchableOpacity onPress={handleSelectAvatar}>
           <Image source={{ uri: newAvatar || avatar }} style={styles.avatar} />
         </TouchableOpacity>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.email}>{email}</Text>
+        <Text style={styles.name}>{user.name}</Text>
+        <Text style={styles.email}>{user.email}</Text>
         <Text style={styles.tokens}>Puntos: {user.tokens}</Text>
         {newAvatar ? (
           <TouchableOpacity onPress={handleSaveAvatar} style={styles.saveButton}>

@@ -56,9 +56,20 @@ return (
                     marginRight: 10
                 },
                 headerStyle: {
-                    borderBottomLeftRadius: 35,
-                    borderBottomRightRadius: 35,
-                    backgroundColor: '#F5FCFF',
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
+                    backgroundColor: '#FFFFFF',
+                    elevation: 1,
+                    shadowOpacity: 0.1,
+                    shadowColor: '#000000',
+                    shadowRadius: 1,
+                    shadowOffset: {
+                        height: 10,
+                        width: 10,
+                        
+                    },
+                    
+
                 },
                 
 

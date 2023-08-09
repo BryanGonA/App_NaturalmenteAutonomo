@@ -5,17 +5,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF',
     margin: wp("4%"),
     borderRadius: wp("2%"),
-    elevation: 5,
+
   },
   background: {
     flex: 1,
     resizeMode: "cover",
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF',
     width: '100%',
     height: '100%',
+    padding: 20,
   },
   buttonContainer: {
     flex: 1,

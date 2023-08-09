@@ -26,8 +26,8 @@ const SettingsScreen = () => {
             {settingsItems.map((item, index) => (
                 
                 <TouchableOpacity key={index} onPress={item.onPress} style={styles.itemContainer}>
-                <Icon name={item.iconName} size={25} color="#555" style={styles.itemIcon} />
-                <Text style={styles.itemLabel}>{item.label}</Text>
+                    <Icon name={item.iconName} size={25} color="#555" style={styles.itemIcon} />
+                    <Text style={styles.itemLabel}>{item.label}</Text>
                 </TouchableOpacity>
             ))}
         </View>

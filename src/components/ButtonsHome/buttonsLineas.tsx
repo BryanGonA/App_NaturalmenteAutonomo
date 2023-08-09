@@ -23,14 +23,14 @@ export default function ButtonsLineas() {
 
   return (
     <View style={styles.background}>
-      <View style={styles.container1}>
+      <View >
         <View style={styles.TextBienvenida}>
           <Text style={styles.Title}>Bienvenido/a </Text>
           <Text style={styles.parraf}>
             Nuestro objetivo es fomentar la cultura del autocuidado y la salud
             integral, encaminada a la Promoción de la Salud física, mental y
             social de los miembros de la comunidad educativa y al reconocimiento
-            del campus como un entorno saludable .
+            del campus como un entorno saludable.
           </Text>
         </View>
         <View style={styles.buttonContainer1}>
@@ -56,7 +56,7 @@ export default function ButtonsLineas() {
               <Text style={styles.buttonText1}>Vida UAO</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button4} onPress={handleAEM}>
-              <Image source={fisic} style={styles.logos1} />
+              <Image source={fisic} style={styles.logos1}/>
               <Text style={styles.buttonText1}>Autónomos en movimiento</Text>
             </TouchableOpacity>
           </View>
