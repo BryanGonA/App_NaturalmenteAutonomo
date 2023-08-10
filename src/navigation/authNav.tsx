@@ -6,6 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home1 from '../screens/Home/HomeScreen'
 import Settings from '../screens/Settings/Settings';
 import ProfileScreen from '../screens/Profile/profileScreen';
+import AlimenteHome from '../screens/lineasDeAccion/alimente/alimenteHome';
+import AEM from "../screens/lineasDeAccion/autonomosEnMov/autoEnMov";
 
 const RootStack = createStackNavigator();
 export default function AuthNav() {
@@ -21,12 +23,21 @@ export default function AuthNav() {
                 component={Settings}
                 options={{ headerShown: false }}
             />
-            {<RootStack.Screen
+            <RootStack.Screen
                 name="Profile"
                 component={ProfileScreen}
                 options={{ headerShown: false }}
             />
-            }
+            <RootStack.Screen
+                name="Alimente"
+                component={AlimenteHome}
+                options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+                name="AEM"
+                component={AEM}
+                options={{ headerShown: false }}
+            />
             
             
         </RootStack.Navigator>

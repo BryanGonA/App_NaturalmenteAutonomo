@@ -9,6 +9,7 @@ import { StyleSheet  } from 'react-native';
 import AuthNav from './src/navigation/authNav';
 import { NativeBaseProvider } from "native-base";
 import GenNav from './src/navigation/genNav';
+import HomeScreen from './src/navigation/HomeStack';
 
 export const LoginContext = createContext({
   setUser: () => {},
@@ -24,7 +25,7 @@ export default function Mystack() {
           <NavigationContainer style={styles.nav}>
             <NativeBaseProvider>   
                 <LoginContext.Provider value={contextValue}>
-                  {user ? <AuthNav /> : <GenNav />}
+                  {user ? <AuthNav />   : <GenNav />}
                 </LoginContext.Provider>
             </NativeBaseProvider>
           </NavigationContainer>
