@@ -25,21 +25,24 @@ export default function AlimenteHome() {
         {
             title: 'Evento 1',
             image: event1,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl.',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl.',
+            startDate: '2023-12-08',
             endDate: '2023-12-12',
             time: '12:00'
         },
         {
             title: 'Evento 2',
             image: event2,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl.',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl.',
+            startDate: '2023-12-08',
             endDate: '2023-12-12',
             time: '12:00'
         },
         {
             title: 'Evento 3',
             image: event1,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl.',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl.',
+            startDate: '2023-12-08',
             endDate: '2023-12-12',
             time: '12:00'
         },
@@ -64,6 +67,7 @@ export default function AlimenteHome() {
                             title={event.title}
                             image={event.image}
                             description={event.description}
+                            startDate={event.startDate}
                             endDate={event.endDate}
                             time={event.time}
                             onPressButton={handlePressButton}

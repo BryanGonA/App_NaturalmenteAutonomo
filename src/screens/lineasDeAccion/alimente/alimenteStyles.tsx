@@ -23,14 +23,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#57D400',
         width: '100%',
-        height: '16%',
+        height: '12%',
         borderRadius: 10,
+        padding: 10,
     },
     title: {
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: 'bold',
         color: 'white',
-        marginTop: 5,
+        margin: 1,
     },
     description: {
         fontSize: 15,
@@ -75,10 +76,21 @@ const styles = StyleSheet.create({
     },
     eventsContainer: {
         alignItems: 'center',
-        padding: 10,
+        padding: 7,
         justifyContent: 'center',
         borderRadius: 10,
         backgroundColor: '#f2fceb',
+    },
+    content: {
+        padding: 16,
+        backgroundColor: "#f8f8f8", 
+    },
+    descriptionContainer: {
+        marginTop: 16,
+        padding: 16,
+        backgroundColor: "#fff", 
+        borderRadius: 8,
+        elevation: 4, 
     },
 });
 

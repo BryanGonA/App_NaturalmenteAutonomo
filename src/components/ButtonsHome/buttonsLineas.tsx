@@ -15,10 +15,10 @@ export default function ButtonsLineas() {
   const navigation = useNavigation();
 
   const handleAlimente = () => {
-    navigation.navigate("Alimente");
+    navigation.navigate('Alimente');
   };
   const handleAEM = () => {
-    navigation.navigate("AEM");
+    navigation.navigate('AEM');
   };
 
   return (
