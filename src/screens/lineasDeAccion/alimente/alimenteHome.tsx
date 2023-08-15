@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from '@expo/vector-icons';
@@ -6,6 +6,9 @@ import styles from "./alimenteStyles";
 import Events from "../../../components/Events/eventCard";
 import { ScrollView } from "react-native-gesture-handler";
 import SidebarMenu from "../../../components/sideBar/SideBar";
+import axios from "axios";
+import { format, parseISO } from "date-fns";
+import { es } from "date-fns/locale";
 
 
 
@@ -21,32 +24,20 @@ export default function AlimenteHome() {
 
     };
 
-    const events = [
-        {
-            title: 'Evento 1',
-            image: event1,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl.',
-            startDate: '2023-12-08',
-            endDate: '2023-12-12',
-            time: '12:00'
-        },
-        {
-            title: 'Evento 2',
-            image: event2,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl.',
-            startDate: '2023-12-08',
-            endDate: '2023-12-12',
-            time: '12:00'
-        },
-        {
-            title: 'Evento 3',
-            image: event1,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl.',
-            startDate: '2023-12-08',
-            endDate: '2023-12-12',
-            time: '12:00'
-        },
-    ];
+    const [events, setEvents] = useState([]);
+
+        useEffect(() => {
+            // Realiza la solicitud GET a la API de eventos
+            axios
+            .get("http://172.16.12.24:8080/api/events")
+            .then((response) => {
+                setEvents(response.data); // Establece los eventos en el estado
+            })
+            .catch((error) => {
+                console.error("Error fetching events:", error);
+            });
+        }, []);
+
 
     return (
         <View style={styles.container}>
@@ -67,9 +58,9 @@ export default function AlimenteHome() {
                             title={event.title}
                             image={event.image}
                             description={event.description}
-                            startDate={event.startDate}
-                            endDate={event.endDate}
-                            time={event.time}
+                            endDate={format(parseISO(event.eventEnd), "PP", { locale: es })} // Formatea la fecha
+                            startDate={format(parseISO(event.eventStart), "PP", { locale: es })} // Formatea la fecha
+                            time={format(parseISO(event.eventStart), "h:mm a")} // Formatea la hora
                             onPressButton={handlePressButton}
                         />
                     ))}

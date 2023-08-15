@@ -11,7 +11,7 @@ import Constants from 'expo-constants';
 import { Input, Icon, Text, Item, Button } from '@rneui/base';
 import useUser from '../../hooks/useUser';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../screens/home';
+import HomeScreen from '../screens/home/HomeScreen';
 
 export default function LoginForm(props) {
   const { isLoginLoading, hasLoginError, login, isLogged } = useUser();

@@ -1,27 +1,31 @@
-const ENDPOINT = 'https://reqres.in/api/login';
-//SITIO WEB DE LA API A LA QUE NOS VAMOS A CONECTAR para probar el login
-//Recibe por parametro un objeto con el user y nuestro password
+import axios from 'axios';
+
+const ENDPOINT = 'http://172.16.12.24:8080/api/auth/signin';
+
 export default async function login({ username, password }) {
-    const res = await fetch(`${ENDPOINT}`, {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            //Estos headers son necesarios para la llamda dada la construcción de nuestra fake api
-            //no siempre nuestras llamadas van a necesitar este código
-            Cookie: '__cfduid=d62490b161e2db30c916b0e697da3cd851615242775',
-        },
-        //Mandamos nuestro objeto con nuestros datos
-        body: JSON.stringify({ email: username, password: password }),
-        redirect: 'follow',
-    });
-    
-    if (!res.ok)
+    try {
+        const response = await axios.post(ENDPOINT, {
+            usernameOrEmail: username,
+            password: password,
+        });
+
+        // La solicitud fue exitosa, obtenemos el accessToken en lugar del token
+        const { accessToken } = response.data;
+        return accessToken;
+    } catch (error) {
+        if (error.response) {
+            // Si la respuesta del servidor tiene información, la mostramos
+            console.error('Respuesta del servidor:', error.response.data);
+        } else if (error.request) {
+            // Si la solicitud fue hecha pero no hubo respuesta
+            console.error('No hubo respuesta del servidor:', error.request);
+        } else {
+            // Si ocurrió un error en el proceso de solicitud
+            console.error('Error al realizar la solicitud:', error.message);
+        }
+
         throw new Error('Algo salió mal, intente de nuevo');
-        
-    const response = await res.json();
-    
-    //Recibimos un JWT
-    const { token } = response;
-    return token;
+    }
 }
+
+

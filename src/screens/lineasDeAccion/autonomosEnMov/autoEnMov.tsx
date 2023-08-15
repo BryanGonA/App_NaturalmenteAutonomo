@@ -1,47 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
+import axios from "axios"; // Importa axios
 import styles from "./aemStyles";
 import Events from "../../../components/Events/eventCard";
 import { ScrollView } from "react-native-gesture-handler";
+import { format, parseISO } from "date-fns";
+import { es } from "date-fns/locale";
 
 
 //Images
 const event1 = require('../../../assets/events/agricult.jpg');
 const event2 = require('../../../assets/events/cafeUAO.jpg');
 
+
 export default function AlimenteHome() {
+
     const navigation = useNavigation();
 
-    const handlePressButton = () => {
-        
+    const handlePressButton = () => {};
+    
+        const [events, setEvents] = useState([]);
 
-    };
-
-    const events = [
-        {
-            title: 'Evento 1',
-            image: event1,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl.',
-            endDate: '2023-12-12',
-            time: '12:00'
-        },
-        {
-            title: 'Evento 2',
-            image: event2,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl.',
-            endDate: '2023-12-12',
-            time: '12:00'
-        },
-        {
-            title: 'Evento 3',
-            image: event1,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl. Sed euismod, nunc vel tincidunt luctus, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nisl.',
-            endDate: '2023-12-12',
-            time: '12:00'
-        },
-    ];
+        useEffect(() => {
+            // Realiza la solicitud GET a la API de eventos
+            axios
+            .get("http://172.16.12.24:8080/api/events")
+            .then((response) => {
+                setEvents(response.data); // Establece los eventos en el estado
+            })
+            .catch((error) => {
+                console.error("Error fetching events:", error);
+            });
+        }, []);
 
     return (
         <View style={styles.container}>
@@ -62,8 +54,9 @@ export default function AlimenteHome() {
                             title={event.title}
                             image={event.image}
                             description={event.description}
-                            endDate={event.endDate}
-                            time={event.time}
+                            endDate={format(parseISO(event.eventEnd), "PP", { locale: es })} // Formatea la fecha
+                            startDate={format(parseISO(event.eventStart), "PP", { locale: es })} // Formatea la fecha
+                            time={format(parseISO(event.eventStart), "h:mm a")} // Formatea la hora
                             onPressButton={handlePressButton}
                         />
                     ))}

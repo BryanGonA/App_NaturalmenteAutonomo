@@ -8,6 +8,8 @@ import useUser from '../../hooks/useUser';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from '@rneui/base';
 import { useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from '../../screens/Home/HomeScreen'
 
 //
 import lock from '../../assets/icons/lock.svg';
@@ -19,6 +21,7 @@ export default function LoginFormm(props) {
     const navigation = useNavigation();
     const {login, isLogged } = useUser();
     const { control, handleSubmit, formState: { errors }, getValues, setValue } = useForm();
+    const back = createStackNavigator();
 
     const onSubmit = async (data) => {
         //Quitar hasta efectuar validaciones
@@ -38,14 +41,13 @@ export default function LoginFormm(props) {
     
     useEffect(() => {
         if (isLogged === true) {
-            /*<back.Navigator>
+            <back.Navigator>
                 <back.Screen
                 name="Home"
-                component={HomeScreen}
+                component={Home}
                 options={{ headerShown: false }}
                 />
-            </back.Navigator>*/
-            navigation.navigate('Home'); 
+            </back.Navigator>
         }
     }, [isLogged]);
 
