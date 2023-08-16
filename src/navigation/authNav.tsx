@@ -8,6 +8,8 @@ import Settings from '../screens/Settings/Settings';
 import ProfileScreen from '../screens/Profile/profileScreen';
 import AlimenteHome from '../screens/lineasDeAccion/alimente/alimenteHome';
 import AEM from "../screens/lineasDeAccion/autonomosEnMov/autoEnMov";
+import VidaUaoHome from '../screens/lineasDeAccion/vidaUAO/VidaUaoHome';
+import CsUaoHome from '../screens/lineasDeAccion/conSentidoUAO/CsUaoHome';
 
 const RootStack = createStackNavigator();
 export default function AuthNav() {
@@ -36,6 +38,16 @@ export default function AuthNav() {
             <RootStack.Screen
                 name="AEM"
                 component={AEM}
+                options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+                name="Vida"
+                component={VidaUaoHome}
+                options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+                name="ConSentido"
+                component={CsUaoHome}
                 options={{ headerShown: false }}
             />
             

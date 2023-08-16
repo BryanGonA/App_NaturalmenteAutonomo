@@ -21,6 +21,14 @@ export default function ButtonsLineas() {
     navigation.navigate('AEM');
   };
 
+  const handleVida = () => {
+    navigation.navigate('Vida');
+  };
+
+  const handleConSentido = () => {
+    navigation.navigate('ConSentido');
+  };
+
   return (
     <View style={styles.background}>
       <View >
@@ -39,7 +47,7 @@ export default function ButtonsLineas() {
               <Image source={ali} style={styles.logos1} />
               <Text style={styles.buttonText1}>Alimente</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button2}>
+            <TouchableOpacity style={styles.button2} onPress={handleConSentido}>
               <Image source={senti} style={styles.logos1} />
               <Text style={styles.buttonText1}>Con sentido UAO</Text>
             </TouchableOpacity>
@@ -51,7 +59,7 @@ export default function ButtonsLineas() {
             />
           </View>
           <View style={styles.row}>
-            <TouchableOpacity style={styles.button3}>
+            <TouchableOpacity style={styles.button3} onPress={handleVida}>
               <Image source={vida} style={styles.logos1} />
               <Text style={styles.buttonText1}>Vida UAO</Text>
             </TouchableOpacity>

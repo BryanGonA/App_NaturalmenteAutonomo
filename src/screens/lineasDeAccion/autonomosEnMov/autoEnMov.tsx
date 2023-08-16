@@ -21,11 +21,22 @@ export default function AlimenteHome() {
 
     const handlePressButton = () => {};
     
-        const [events, setEvents] = useState([]);
+    const [events, setEvents] = useState([]);
+    const [categories, setCategories] = useState([]);
 
-        useEffect(() => {
-            // Realiza la solicitud GET a la API de eventos
-            axios
+    useEffect(() => {
+        // Realiza la solicitud GET a la API de categorías
+        axios
+            .get("http://172.16.12.24:8080/api/categories")
+            .then((response) => {
+                setCategories(response.data); // Establece las categorías en el estado
+            })
+            .catch((error) => {
+                console.error("Error fetching categories:", error);
+            });
+
+        // Realiza la solicitud GET a la API de eventos
+        axios
             .get("http://172.16.12.24:8080/api/events")
             .then((response) => {
                 setEvents(response.data); // Establece los eventos en el estado
@@ -33,7 +44,7 @@ export default function AlimenteHome() {
             .catch((error) => {
                 console.error("Error fetching events:", error);
             });
-        }, []);
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -45,21 +56,25 @@ export default function AlimenteHome() {
                 <Text style={styles.buttonText}>Eventos</Text>
             </TouchableOpacity>
             <ScrollView contentContainerStyle={styles.events}>
-            <Text style={styles.description}>La Actividad física .............................</Text>
+            <Text style={styles.description}>La actividad física tiene importantes beneficios para la salud del corazón, el cuerpo y la mente. La actividad física reduce los síntomas de depresión y ansiedad. Las personas que son insuficientemente activas tienen un 20% a 30% más de riesgo de contraer enfermedades en comparación con las personas que son suficientemente activas.</Text>
                 <Text style={styles.eventsTitle}>Próximos eventos</Text>
                 <View style={styles.eventsContainer}>
-                    {events.map((event, index) => (
-                        <Events
-                            key={index}
-                            title={event.title}
-                            image={event.image}
-                            description={event.description}
-                            endDate={format(parseISO(event.eventEnd), "PP", { locale: es })} // Formatea la fecha
-                            startDate={format(parseISO(event.eventStart), "PP", { locale: es })} // Formatea la fecha
-                            time={format(parseISO(event.eventStart), "h:mm a")} // Formatea la hora
-                            onPressButton={handlePressButton}
-                        />
-                    ))}
+                    {events
+                        .filter((event) =>
+                            event.categories.some((category) => category.name === "Autónomos en movimiento")
+                        )
+                        .map((event, index) => (
+                            <Events
+                                key={index}
+                                title={event.title}
+                                image={event.image}
+                                description={event.description}
+                                endDate={format(parseISO(event.eventEnd), "PP", { locale: es })}
+                                startDate={format(parseISO(event.eventStart), "PP", { locale: es })}
+                                time={format(parseISO(event.eventStart), "h:mm a")}
+                                onPressButton={handlePressButton}
+                            />
+                        ))}
                 </View>
             </ScrollView>
         </View>
