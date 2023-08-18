@@ -8,7 +8,7 @@ import Events from "../../../components/Events/eventCard";
 import { ScrollView } from "react-native-gesture-handler";
 import { format, parseISO } from "date-fns";
 import { es } from "date-fns/locale";
-
+import API_BASE_URL from '../../../components/config/ApiConfig'
 
 //Images
 const event1 = require('../../../assets/events/agricult.jpg');
@@ -27,7 +27,7 @@ export default function AlimenteHome() {
     useEffect(() => {
         // Realiza la solicitud GET a la API de categorías
         axios
-            .get("http://172.16.12.24:8080/api/categories")
+            .get(API_BASE_URL+"/categories")
             .then((response) => {
                 setCategories(response.data); // Establece las categorías en el estado
             })
@@ -37,7 +37,7 @@ export default function AlimenteHome() {
 
         // Realiza la solicitud GET a la API de eventos
         axios
-            .get("http://172.16.12.24:8080/api/events")
+            .get(API_BASE_URL+"/events")
             .then((response) => {
                 setEvents(response.data); // Establece los eventos en el estado
             })

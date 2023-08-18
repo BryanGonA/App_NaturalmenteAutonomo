@@ -1,6 +1,7 @@
 import axios from 'axios';
+import API_BASE_URL from '../components/config/ApiConfig'
 
-const ENDPOINT = 'http://172.16.12.24:8080/api/auth/signin';
+const ENDPOINT = API_BASE_URL+'/auth/signin';
 
 export default async function login({ username, password }) {
     try {

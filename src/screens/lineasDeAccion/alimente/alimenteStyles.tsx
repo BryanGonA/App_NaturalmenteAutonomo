@@ -53,20 +53,34 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         marginTop: 20,
     },
+    MenuButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        margin: 10,
+        width: '100%',
+        height: '2%',
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        padding: 10,
+        
+    },
+
     button: {
         backgroundColor: '#57D400',
-        width: 100,
+        width: 120,
         height: 30,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 10,
-        marginVertical: 10,
     },
     buttonText: {
         fontSize: 14,
         fontWeight: 'bold',
         color: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     events: {
         alignItems: 'center',

@@ -9,14 +9,24 @@ import SidebarMenu from "../../../components/sideBar/SideBar";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
 import { es } from "date-fns/locale";
+import API_BASE_URL from '../../../components/config/ApiConfig'
+
 
 //Images
 const event1 = require('../../../assets/events/agricult.jpg');
 const event2 = require('../../../assets/events/cafeUAO.jpg');
 
 export default function AlimenteHome() {
+
+    const navigation = useNavigation();
+
+
     const handlePressButton = () => {
-        // ...
+        navigation.navigate("Alimente");
+    };
+
+    const handlePressBtComparte = () => {
+        navigation.navigate("ComparteUAO");
     };
 
     const [events, setEvents] = useState([]);
@@ -25,7 +35,7 @@ export default function AlimenteHome() {
     useEffect(() => {
         // Realiza la solicitud GET a la API de categorías
         axios
-            .get("http://172.16.12.24:8080/api/categories")
+            .get(API_BASE_URL+"/categories")
             .then((response) => {
                 setCategories(response.data); // Establece las categorías en el estado
             })
@@ -35,7 +45,7 @@ export default function AlimenteHome() {
 
         // Realiza la solicitud GET a la API de eventos
         axios
-            .get("http://172.16.12.24:8080/api/events")
+            .get(API_BASE_URL+"/events")
             .then((response) => {
                 setEvents(response.data); // Establece los eventos en el estado
             })
@@ -50,9 +60,14 @@ export default function AlimenteHome() {
                 <Image source={require('../../../assets/logo/Alimente.png')} style={styles.image} />
                 <Text style={styles.title}>Alimente</Text>
             </View>
-            <TouchableOpacity onPress={handlePressButton} style={styles.button}>
-                <Text style={styles.buttonText}>Eventos</Text>
-            </TouchableOpacity>
+            <View style={styles.MenuButtons}>
+                <TouchableOpacity onPress={handlePressButton} style={styles.button}>
+                    <Text style={styles.buttonText}>Eventos</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handlePressBtComparte} style={styles.button}>
+                    <Text style={styles.buttonText}>Comparte UAO</Text>
+                </TouchableOpacity>
+            </View>
             <ScrollView contentContainerStyle={styles.events}>
                 <Text style={styles.description}>Una alimentación saludable consiste en ingerir una variedad de alimentos que te brinden los nutrientes que necesitas para mantenerte sana, sentirte bien y tener energía. Estos nutrientes incluyen las proteínas, los carbohidratos, las grasas, el agua, las vitaminas y los minerales. La nutrición es importante para todos.</Text>
                 <Text style={styles.eventsTitle}>Próximos eventos</Text>
