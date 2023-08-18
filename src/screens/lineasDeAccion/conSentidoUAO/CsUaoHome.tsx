@@ -56,7 +56,7 @@ export default function csUaoHome() {
                 <View style={styles.eventsContainer}>
                     {events
                         .filter((event) =>
-                            event.categories.some((category) => category.name === "Alimente")
+                            event.categories.some((category) => category.name === "Con sentido UAO")
                         )
                         .map((event, index) => (
                             <Events

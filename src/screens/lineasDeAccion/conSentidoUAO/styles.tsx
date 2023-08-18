@@ -10,18 +10,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 10,
         padding: 10,
-        
+        marginTop: 30,
     },
     background: {
         resizeMode: "cover",
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#009881',
         width: '100%',
         height: '100%',
     },
     header: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#57D400',
+        backgroundColor: '#009881',
         width: '100%',
         height: '14%',
         borderRadius: 10,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     categoryTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#57D400', // Puedes ajustar el color según tu preferencia
+        color: '#009881', // Puedes ajustar el color según tu preferencia
         marginTop: 10,
         marginBottom: 5,
     },
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     button: {
-        backgroundColor: '#57D400',
+        backgroundColor: '#009881',
         width: 100,
         height: 30,
         borderRadius: 10,

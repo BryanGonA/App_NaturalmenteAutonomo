@@ -10,18 +10,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 10,
         padding: 10,
-        
+        marginTop: 30,
     },
     background: {
         resizeMode: "cover",
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#FFB029',
         width: '100%',
         height: '100%',
     },
     header: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#57D400',
+        backgroundColor: '#FFB029',
         width: '100%',
         height: '14%',
         borderRadius: 10,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     button: {
-        backgroundColor: '#57D400',
+        backgroundColor: '#FFB029',
         width: 100,
         height: 30,
         borderRadius: 10,

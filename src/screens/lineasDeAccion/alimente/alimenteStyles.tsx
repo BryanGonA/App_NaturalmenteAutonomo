@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 10,
         padding: 10,
-        
+        marginTop: 30,
     },
     background: {
         resizeMode: "cover",

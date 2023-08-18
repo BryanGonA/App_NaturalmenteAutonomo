@@ -56,7 +56,7 @@ export default function vidaUaoHome() {
                 <View style={styles.eventsContainer}>
                     {events
                         .filter((event) =>
-                            event.categories.some((category) => category.name === "Alimente")
+                            event.categories.some((category) => category.name === "Vida UAO")
                         )
                         .map((event, index) => (
                             <Events
