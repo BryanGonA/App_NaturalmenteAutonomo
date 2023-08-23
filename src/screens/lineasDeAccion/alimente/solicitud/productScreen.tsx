@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Image, TouchableOpacity, Dropdown  } from 'react-native';
+import { View, Image, TouchableOpacity  } from 'react-native';
 import { Card, FlatList, Text, Container, ScrollView, Fab, Icon, Button, Modal, FormControl, Input } from 'native-base';
 import axios from 'axios';
 import API_BASE_URL from '../../../../components/config/ApiConfig'
@@ -48,9 +48,9 @@ const ProductScreen = () => {
 
   const handleSubmit = () => {
     const user = {
-      id: 'AQUI_EL_ID_DEL_USUARIO', // Debe ser el ID del usuario logueado
-      firstName: 'AQUI_EL_NOMBRE_DEL_USUARIO', // Debe ser el nombre del usuario logueado
-      cedula: 'AQUI_LA_CEDULA_DEL_USUARIO', // Debe ser la cédula del usuario logueado
+      id: '', // Debe ser el ID del usuario logueado
+      firstName: '', // Debe ser el nombre del usuario logueado
+      cedula: '', // Debe ser la cédula del usuario logueado
     };
 
     const responses = questions.map(question => ({
@@ -61,7 +61,6 @@ const ProductScreen = () => {
     }));
 
     const requestData = {
-      user: user,
       responses: responses,
     };
 
