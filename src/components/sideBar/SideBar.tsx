@@ -1,9 +1,11 @@
 import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  useContext } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Text, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import axios from 'axios';
 import API_BASE_URL from '../config/ApiConfig';
+import base64js from 'base64-js';
+import { LoginContext } from '../../../App'
 
 
 import styles from './sideBarStyles';
@@ -13,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function SidebarMenu(props: DrawerContentComponentProps) {
 
   const defaultProfileImage = require('../../assets/images/user.png');
+  const { setUser } = useContext(LoginContext);
 
   const [userDetails, setUserDetails] = useState({
     name: 'Nombre del usuario',
@@ -37,20 +40,27 @@ export default function SidebarMenu(props: DrawerContentComponentProps) {
       
       console.log('User details:', userSummary);
 
-      // Obtener la imagen de perfil usando el ID del usuario
-      if (userSummary.hasProfileImage) {
-        // Obtener la imagen de perfil y establecerla en userDetails
-        const profileImageResponse = await axios.get(API_BASE_URL+`/users/photo/${userSummary.id}`, { responseType: 'arraybuffer' });
-        const profileImageBase64 = Buffer.from(profileImageResponse.data).toString('base64');
+      const formattedName = capitalizeFirstLetter(userSummary.firstName) + ' ' + capitalizeFirstLetter(userSummary.lastName);
 
-        setUserDetails({
-          name: capitalizeFirstLetter(userSummary.firstName) + ' ' + capitalizeFirstLetter(userSummary.lastName),
-          profileImage: { uri: `data:image/jpeg;base64,${profileImageBase64}` },
+      try {
+        const profileImageResponse = await axios.get(API_BASE_URL+`/users/photo/${userSummary.id}`, {
+          responseType: 'arraybuffer',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         });
-      } else {
-        // Usar la imagen predeterminada si no hay imagen de perfil
+  
+        const byteArray = new Uint8Array(profileImageResponse.data);
+        const imageBase64 = base64js.fromByteArray(byteArray);
+  
         setUserDetails({
-          name: capitalizeFirstLetter(userSummary.firstName) + ' ' + capitalizeFirstLetter(userSummary.lastName),
+          name: formattedName,
+          profileImage: { uri: `data:image/jpeg;base64,${imageBase64}` },
+        });
+      } catch (error) {
+        // Si ocurre un error al cargar la imagen, solo establecemos el nombre
+        setUserDetails({
+          name: formattedName,
           profileImage: defaultProfileImage,
         });
       }
@@ -62,6 +72,17 @@ export default function SidebarMenu(props: DrawerContentComponentProps) {
   useEffect(() => {
     fetchUserDetails();
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem('jwt'); // Eliminar el token
+      setUser();
+      console.log("Token", AsyncStorage)
+      props.navigation.navigate('Landing'); // Redirigir a la pantalla de inicio de sesión
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
 
   return (
     <DrawerContentScrollView {...props} style={styles.container}>
@@ -88,7 +109,7 @@ export default function SidebarMenu(props: DrawerContentComponentProps) {
         />
         <DrawerItem
           label="Eventos"
-          onPress={() => props.navigation.navigate('Pantalla2')}
+          onPress={() => props.navigation.navigate('EventALL')}
           activeBackgroundColor="#fff"
           activeTintColor="#000"
           labelStyle={styles.itemText}
@@ -104,7 +125,7 @@ export default function SidebarMenu(props: DrawerContentComponentProps) {
         />
       </View>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.logoutButton}>
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
           <MaterialIcons name="exit-to-app" size={24} color="black" style={styles.icon} />
           <Text style={styles.logout}>Cerrar sesión</Text>
         </TouchableOpacity>

@@ -8,6 +8,7 @@ import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API_BASE_URL from '../../components/config/ApiConfig';
 import ImagePicker from 'react-native-image-picker';
+import base64js from 'base64-js';
 
 import styles from './profileStyles'
 
@@ -61,29 +62,39 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
       
       console.log('User details:', userSummary);
 
-      const response2 = await axios.get(API_BASE_URL+`/users/${userSummary.id}`);
+      const response2 = await axios.get(API_BASE_URL+`/users/${userSummary.id}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
 
       const userTypes = response2.data;
 
-
+      console.log("Points", userTypes.points);
 
       // Obtener la imagen de perfil usando el ID del usuario
-      if (userSummary.hasProfileImage) {
-        // Obtener la imagen de perfil y establecerla en userDetails
-        const profileImageResponse = await axios.get(API_BASE_URL+`/users/photo/${userSummary.id}`, { responseType: 'arraybuffer' });
-        const profileImageBase64 = Buffer.from(profileImageResponse.data).toString('base64');
 
-        
-
+      try {
+        const profileImageResponse = await axios.get(API_BASE_URL+`/users/photo/${userSummary.id}`, {
+          responseType: 'arraybuffer',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+  
+        const byteArray = new Uint8Array(profileImageResponse.data);
+        const imageBase64 = base64js.fromByteArray(byteArray);
+  
         setUserDetails({
           name: capitalizeFirstLetter(userSummary.firstName) + ' ' + capitalizeFirstLetter(userSummary.lastName),
-          profileImage: { uri: `data:image/jpeg;base64,${profileImageBase64}` },
+          profileImage: { uri: `data:image/jpeg;base64,${imageBase64}` },
           userTypes: userTypes.userType,
           points: userTypes.points,
 
         });
-      } else {
-        // Usar la imagen predeterminada si no hay imagen de perfil
+      } catch (error) {
+        // Si ocurre un error al cargar la imagen, solo establecemos el nombre
         setUserDetails({
           name: capitalizeFirstLetter(userSummary.firstName) + ' ' + capitalizeFirstLetter(userSummary.lastName),
           profileImage: defaultProfileImage,
@@ -91,6 +102,7 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
           points: userTypes.points,
         });
       }
+
     } catch (error) {
       console.error('Error fetching user details:', error);
     }
@@ -210,7 +222,7 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
         </View>
 
         <View style={{ marginTop: 32 }}>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {/**<ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.mediaImageContainer}>
               <Image
                 source={require("../../assets/photo.jpg")}
@@ -232,7 +244,7 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
                 resizeMode="cover"
               ></Image>
             </View>
-          </ScrollView>
+        </ScrollView>**/}
         </View>
         <Text style={[styles.subText, styles.recent]}>Actividad reciente</Text>
         <View style={{ alignItems: "center" }}>

@@ -9,8 +9,9 @@ import ProfileScreen from '../screens/Profile/profileScreen';
 import AlimenteHome from '../screens/lineasDeAccion/alimente/alimenteHome';
 import AEM from "../screens/lineasDeAccion/autonomosEnMov/autoEnMov";
 import VidaUaoHome from '../screens/lineasDeAccion/vidaUAO/VidaUaoHome';
-import CsUaoHome from '../screens/lineasDeAccion/conSentidoUAO/CsUaoHome';3
+import CsUaoHome from '../screens/lineasDeAccion/conSentidoUAO/CsUaoHome';
 import ComparteUAO from '../screens/lineasDeAccion/alimente/solicitud/productScreen';
+import EventALL from '../screens/EventsScreens/EventScreens';
 
 const RootStack = createStackNavigator();
 export default function AuthNav() {
@@ -56,7 +57,11 @@ export default function AuthNav() {
                 component={ComparteUAO}
                 options={{ headerShown: false }}
             />
-            
+            <RootStack.Screen
+                name="EventALL"
+                component={EventALL}
+                options={{ headerShown: false }}
+            />
             
         </RootStack.Navigator>
     );
