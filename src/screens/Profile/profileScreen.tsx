@@ -7,8 +7,10 @@ import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API_BASE_URL from '../../components/config/ApiConfig';
-import ImagePicker from 'react-native-image-picker';
+//import ImagePicker from 'react-native-image-picker';
 import base64js from 'base64-js';
+import * as ImagePicker from 'expo-image-picker';
+
 
 import styles from './profileStyles'
 
@@ -29,9 +31,10 @@ interface User {
 
 
 const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
+  
   const navigation = useNavigation();
   
-  const [selectedImage, setSelectedImage] = useState<ImagePicker.ImagePickerResponse | null>(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const defaultProfileImage = require('../../assets/images/user.png');
 
@@ -112,18 +115,30 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
     fetchUserDetails();
   }, []);
 
-  const handleSelectAvatar = () => {
-    const options: ImagePicker.ImageLibraryOptions = {
-      mediaType: 'photo',
-      quality: 0.5,
-    };
+  const handleSelectAvatar = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    allowsEditing: true,
+    quality: 1,
+    base64: true,
+    //aspect: [4, 3],
+  });
 
-    ImagePicker.launchImageLibrary(options, (response) => {
-      if (!response.didCancel && !response.errorCode) {
-        setSelectedImage(response);
+    
+
+    if (!result.canceled) {
+      if (result.assets && result.assets.length > 0) {
+        setSelectedImage(result?.assets[0]?.uri); // Establecer el URI en el estado
+        console.log('Imagen seleccionada:', result.assets[0].uri);
+        
+      } else {
+        alert('No se pudo obtener la imagen.');
       }
-    });
-  };
+    }
+
+    
+};
+
 
   const handleSaveAvatar = async () => {
 
@@ -137,10 +152,9 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
         });
         const user = res.data;
 
+        const blob = await fetch(selectedImage).then((r) => r.blob());
         const formData = new FormData();
-
-        const blob = await fetch(selectedImage.assets[0].uri).then((response) => response.blob());
-        formData.append('file', blob, 'profile.jpg'); // Agregar el Blob directamente
+        formData.append('file', blob, 'profile.jpg'); 
 
         const response = await axios.post(
           `${API_BASE_URL}/users/photo/${user.id}`,
@@ -155,14 +169,21 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
 
         console.log('Imagen subida con éxito:', response.data);
         // Actualizar la imagen en userDetails si es necesario
-        // ...
+        
       } catch (error) {
         console.error('Error al subir la imagen:', error);
+        
       }
     } else {
       console.log('No se seleccionó ninguna imagen.');
     }
-  };
+};
+
+useEffect(() => {
+  if (selectedImage) {
+    handleSaveAvatar();
+  }
+}, [selectedImage]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -173,7 +194,6 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
           </TouchableOpacity>
           <Feather name="more-vertical" size={30} color="#52575D" />
         </View>
-
         <View style={{ alignSelf: "center" }}>
           <View style={styles.profileImage}>
             <Image
@@ -204,7 +224,6 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
           </TouchableOpacity>
           </View>
         </View>
-
         <View style={styles.infoContainer}>
           <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>
             {userDetails.name}

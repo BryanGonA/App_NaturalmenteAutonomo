@@ -11,9 +11,25 @@ import { es } from "date-fns/locale";
 import API_BASE_URL from "../../components/config/ApiConfig";
 import styles from "./EventStyles"; 
 
+
 export default function EventScreens() {
+
+    const navigation = useNavigation();
+
     const handlePressButton = () => {
-        // ...
+        navigation.navigate("Alimente");
+    };
+
+    const handlePressBtCSU = () => {
+        navigation.navigate("ConSentido");
+    };
+
+    const handlePressAEM = () => {
+        navigation.navigate("AEM");
+    };
+
+    const handlePressBtVU = () => {
+        navigation.navigate("Vida");
     };
 
     const [events, setEvents] = useState([]);
@@ -36,6 +52,22 @@ export default function EventScreens() {
                 <Image source={require('../../assets/logo/all.png')} style={styles.image} />
                 <Text style={styles.title}>Todos los eventos</Text>
             </View>
+            <ScrollView>
+                <View style={styles.MenuButtons}>
+                    <TouchableOpacity onPress={handlePressButton} style={styles.button}>
+                        <Text style={styles.buttonText}>Alimente</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handlePressBtVU} style={styles.button}>
+                        <Text style={styles.buttonText}>Vida UAO</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handlePressAEM} style={styles.button}>
+                        <Text style={styles.buttonText}>Autónomo en movimiento</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handlePressBtCSU} style={styles.button}>
+                        <Text style={styles.buttonText}>Con Sentido UAO</Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
             <ScrollView contentContainerStyle={styles.events}>
                 <View style={styles.eventsContainer}>
                     {events.map((event, index) => (
