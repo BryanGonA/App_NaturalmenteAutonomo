@@ -37,7 +37,7 @@ export default function EventScreens() {
     useEffect(() => {
         // Realiza la solicitud GET a la API de eventos
         axios
-            .get(API_BASE_URL+"/events")
+            .get(API_BASE_URL+"/events/published")
             .then((response) => {
                 setEvents(response.data); // Establece los eventos en el estado
             })
