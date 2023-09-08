@@ -10,11 +10,16 @@ import { format, parseISO } from "date-fns";
 import { es } from "date-fns/locale";
 import API_BASE_URL from "../../components/config/ApiConfig";
 import styles from "./EventStyles"; 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import base64js from 'base64-js';
+import { event } from "react-native-reanimated";
 
 
 export default function EventScreens() {
 
     const navigation = useNavigation();
+
+    const defaultProfileImage = require('../../assets/images/user.png');
 
     const handlePressButton = () => {
         navigation.navigate("Alimente");
@@ -34,17 +39,43 @@ export default function EventScreens() {
 
     const [events, setEvents] = useState([]);
 
+
+    const fetchEvents = async () => {
+        try {
+            const token = await AsyncStorage.getItem('jwt');
+            const response = await axios.get(API_BASE_URL+"/events/published", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    },
+                });
+                const events = response.data;
+
+                try {
+                    const EventsImage = await axios.get(API_BASE_URL+`/events/photo/${events.id}`, {
+                        responseType: 'arraybuffer',
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                    const byteArray = new Uint8Array(EventsImage.data);
+                    const imageBase64 = base64js.fromByteArray(byteArray);
+
+                    events.image = imageBase64;
+                    
+                    setEvents(events);
+                } catch (error) {
+                    setEvents(events);
+                    
+                }
+        } catch (error) {
+            console.error('Error fetching events:', error);
+        }
+    };
+
     useEffect(() => {
-        // Realiza la solicitud GET a la API de eventos
-        axios
-            .get(API_BASE_URL+"/events/published")
-            .then((response) => {
-                setEvents(response.data); // Establece los eventos en el estado
-            })
-            .catch((error) => {
-                console.error("Error fetching events:", error);
-            });
+        fetchEvents();
     }, []);
+    
 
     return (
         <View style={styles.container}>
@@ -70,18 +101,22 @@ export default function EventScreens() {
             </ScrollView>
             <ScrollView contentContainerStyle={styles.events}>
                 <View style={styles.eventsContainer}>
-                    {events.map((event, index) => (
-                        <Events
-                            key={index}
-                            title={event.title}
-                            image={event.image}
-                            description={event.description}
-                            endDate={format(parseISO(event.eventEnd), "PP", { locale: es })}
-                            startDate={format(parseISO(event.eventStart), "PP", { locale: es })}
-                            time={format(parseISO(event.eventStart), "h:mm a")}
-                            onPressButton={handlePressButton}
-                        />
+                    {events.map((events, index) => (
+                    <Events
+                        key={index}
+                        title={events.title}
+                        image={events.image}
+                        description={events.description}
+                        endDate={events.endDate}
+                        startDate={events.startDate}
+                        time={events.time} 
+                        onPressButton={function (): void {
+                            throw new Error("Function not implemented.");
+                        }}
+                    />
                     ))}
+                    
+                    
                 </View>
             </ScrollView>
         </View>
