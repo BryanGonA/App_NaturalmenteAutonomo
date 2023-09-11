@@ -39,7 +39,7 @@ export default function EventScreens() {
 
     const [events, setEvents] = useState([]);
 
-
+/*
     const fetchEvents = async () => {
         try {
             const token = await AsyncStorage.getItem('jwt');
@@ -75,7 +75,7 @@ export default function EventScreens() {
     useEffect(() => {
         fetchEvents();
     }, []);
-    
+    */
 
     return (
         <View style={styles.container}>
@@ -101,21 +101,7 @@ export default function EventScreens() {
             </ScrollView>
             <ScrollView contentContainerStyle={styles.events}>
                 <View style={styles.eventsContainer}>
-                    {events.map((events, index) => (
-                    <Events
-                        key={index}
-                        title={events.title}
-                        eventId={events.id}
-                        image={events.image}
-                        description={events.description}
-                        endDate={events.endDate}
-                        startDate={events.startDate}
-                        time={events.time} 
-                        onPressButton={function (): void {
-                            throw new Error("Function not implemented.");
-                        }}
-                    />
-                    ))}
+                    <Events events={events} onPressButton={handlePressButton}/> 
                     
                     
                 </View>
