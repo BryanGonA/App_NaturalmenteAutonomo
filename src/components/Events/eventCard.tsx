@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, View } from 'react-native';
+import API_BASE_URL from "../../components/config/ApiConfig";
 import { Text, AlertDialog, Button, Box, Center } from 'native-base';
+import axios from 'axios';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import base64js from 'base64-js';
 
 import eventCardStyles from './eventCardStyles';
 
 export interface EventCardProps {
     title: string;
-    image: any;
+    eventId: number;
     description: string;
     endDate: string;
     startDate: string;
@@ -14,9 +18,52 @@ export interface EventCardProps {
     onPressButton: () => void;
 }
 
-export default function EventCard({ title, image, description, time, startDate, endDate, onPressButton }: EventCardProps) {
+export default function EventCard({ title, eventId, description, time, startDate, endDate, onPressButton }: EventCardProps) {
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+
+    const defaultProfileImage = require('../../assets/images/user.png');
+
+    const [eventDetails, setEventDetails] = useState({
+        profileImage: defaultProfileImage, // Imagen de perfil predeterminada
+    });
+
+    // Función para obtener la imagen del evento
+    const fetchEventData = async () => {
+        try {
+            const token = await AsyncStorage.getItem('jwt');
+            
+            const ImageResponse = await axios.get(API_BASE_URL+`/events/images/${eventId}`, {
+                responseType: 'arraybuffer',
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+              });
+
+            
+
+            const byteArray = new Uint8Array(ImageResponse.data);
+            const imageBase64 = base64js.fromByteArray(byteArray);
+
+            
+
+            setEventDetails({
+              profileImage: { uri: `data:image/jpeg;base64,${imageBase64}` },
+            });
+
+        } catch (error) {
+            console.error('Error al obtener la imagen:', error);
+            setEventDetails({
+                profileImage: defaultProfileImage,
+            });
+        }
+    };
+
+    useEffect(() => {
+        fetchEventData();
+    }, []);
+
+    
 
     const handlePressButton = () => {
         setIsOpen(true);
@@ -43,7 +90,7 @@ export default function EventCard({ title, image, description, time, startDate, 
 
     return (
         <View style={eventCardStyles.container}>
-            <Image source={image} style={eventCardStyles.image} />
+            <Image style={eventCardStyles.image} source={eventDetails.profileImage}/>
             <Text style={eventCardStyles.title}>{title}</Text>
             <Text style={eventCardStyles.description}>{description}</Text>
 

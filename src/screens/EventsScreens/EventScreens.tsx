@@ -105,6 +105,7 @@ export default function EventScreens() {
                     <Events
                         key={index}
                         title={events.title}
+                        eventId={events.id}
                         image={events.image}
                         description={events.description}
                         endDate={events.endDate}

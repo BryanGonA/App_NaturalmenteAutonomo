@@ -66,8 +66,8 @@ export default function AlimenteHome() {
                         .map((event, index) => (
                             <Events
                                 key={index}
+                                eventId={event.id}
                                 title={event.title}
-                                image={event.image}
                                 description={event.description}
                                 endDate={format(parseISO(event.eventEnd), "PP", { locale: es })}
                                 startDate={format(parseISO(event.eventStart), "PP", { locale: es })}

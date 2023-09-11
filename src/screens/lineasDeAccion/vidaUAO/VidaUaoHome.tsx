@@ -62,7 +62,7 @@ export default function vidaUaoHome() {
                             <Events
                                 key={index}
                                 title={event.title}
-                                image={event.image}
+                                eventId={event.id}
                                 description={event.description}
                                 endDate={format(parseISO(event.eventEnd), "PP", { locale: es })}
                                 startDate={format(parseISO(event.eventStart), "PP", { locale: es })}
