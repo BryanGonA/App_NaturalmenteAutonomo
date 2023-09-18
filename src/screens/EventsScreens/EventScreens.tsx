@@ -106,7 +106,6 @@ export default function EventScreens() {
                         key={index}
                         title={events.title}
                         eventId={events.id}
-                        image={events.image}
                         description={events.description}
                         endDate={events.endDate}
                         startDate={events.startDate}

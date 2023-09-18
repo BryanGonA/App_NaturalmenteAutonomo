@@ -40,12 +40,10 @@ export default function EventCard({ title, eventId, description, time, startDate
                 }
               });
 
-            
 
             const byteArray = new Uint8Array(ImageResponse.data);
             const imageBase64 = base64js.fromByteArray(byteArray);
 
-            
 
             setEventDetails({
               profileImage: { uri: `data:image/jpeg;base64,${imageBase64}` },
@@ -69,10 +67,36 @@ export default function EventCard({ title, eventId, description, time, startDate
         setIsOpen(true);
     };
 
-    const handleConfirm = () => {
-        setIsSubscribed(!isSubscribed);
-        onPressButton();
-        setIsOpen(false);
+    const handleConfirm = async () => {
+        try {
+            // Paso 1: Obtener el ID del usuario que inició sesión
+            const token = await AsyncStorage.getItem('jwt');
+            const userResponse = await axios.get(API_BASE_URL + '/users/me', {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            });
+            const userId = userResponse.data; // Suponiendo que el ID está en userResponse.data
+            
+            // Paso 2: Hacer la solicitud POST
+            const responseEvento = await axios.post(
+                `${API_BASE_URL}/events/${eventId}/participants/${userId.id}`,
+                null,
+                {
+                  headers: {
+                    'Authorization': `Bearer ${token}`
+                  }
+                });
+            
+            setIsSubscribed(!isSubscribed);
+            onPressButton();
+            setIsOpen(false);
+            console.log('Inscripción aprobada');
+          } catch (error) {
+            console.error('Error al confirmar inscripción:', error);
+            // Manejar el error si es necesario
+          }
+
     };
 
     const buttonText = isSubscribed ? 'Cancelar' : 'Inscribirse';
@@ -90,7 +114,9 @@ export default function EventCard({ title, eventId, description, time, startDate
 
     return (
         <View style={eventCardStyles.container}>
-            <Image style={eventCardStyles.image} source={eventDetails.profileImage}/>
+            <View  style={eventCardStyles.containerImage}>
+                <Image style={eventCardStyles.image} source={eventDetails.profileImage}/>
+            </View>
             <Text style={eventCardStyles.title}>{title}</Text>
             <Text style={eventCardStyles.description}>{description}</Text>
 

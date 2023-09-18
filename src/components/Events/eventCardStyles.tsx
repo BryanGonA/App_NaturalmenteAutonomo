@@ -8,10 +8,15 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         elevation: 3, 
     },
-    image: {
+    containerImage: {
+        height: 250,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+      image: {
         width: '100%',
-        height: 150,
-        borderRadius: 8,
+        height: '100%',
+        resizeMode: 'cover',
     },
     title: {
         fontSize: 20,
