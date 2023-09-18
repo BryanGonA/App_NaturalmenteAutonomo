@@ -4,10 +4,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
+import { useQuery, useMutation } from 'react-query';
+import ImageResizer from 'react-native-image-resizer';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API_BASE_URL from '../../components/config/ApiConfig';
-//import ImagePicker from 'react-native-image-picker';
 import base64js from 'base64-js';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -47,7 +48,7 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
     points: 0,
   });
 
-  function capitalizeFirstLetter(string) {
+  function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
@@ -76,13 +77,18 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
 
       console.log("Points", userTypes.points);
 
+      if (userTypes.points === null) {
+        userTypes.points = 0;
+      }
+
       // Obtener la imagen de perfil usando el ID del usuario
 
       try {
         const profileImageResponse = await axios.get(API_BASE_URL+`/users/photo/${userSummary.id}`, {
           responseType: 'arraybuffer',
           headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
+            
           }
         });
   
@@ -120,7 +126,7 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
     allowsEditing: true,
     quality: 1,
-    base64: true,
+    base64: false,
     //aspect: [4, 3],
   });
 
@@ -140,48 +146,54 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
 };
 
 
-  const handleSaveAvatar = async () => {
+const handleSaveAvatar = async (selectedImage: string) => {
+  // Validar la imagen seleccionada
+  if (!selectedImage) {
+    throw new Error('No se seleccionó ninguna imagen.');
+  }
 
-    if (selectedImage) {
-      try {
-        const token = await AsyncStorage.getItem('jwt');
-        const res = await axios.get(API_BASE_URL + '/users/me', {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        });
-        const user = res.data;
+  // Obtener el token del usuario
+  const token = await AsyncStorage.getItem('jwt');
 
-        const blob = await fetch(selectedImage).then((r) => r.blob());
-        const formData = new FormData();
-        formData.append('file', blob, 'profile.jpg'); 
+  // Obtener el ID del usuario
+  const { data: user } = await axios.get(API_BASE_URL + '/users/me', {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  });
 
-        const response = await axios.post(
-          `${API_BASE_URL}/users/photo/${user.id}`,
-          formData,
-          {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        );
+  // Redimensionar la imagen
+  const resizedImage = await ImageResizer.createResizedImage(selectedImage, 300, 300, 'JPEG', 100);
 
-        console.log('Imagen subida con éxito:', response.data);
-        // Actualizar la imagen en userDetails si es necesario
-        
-      } catch (error) {
-        console.error('Error al subir la imagen:', error);
-        
+  const blob = await fetch(resizedImage.uri).then((r) => r.blob());
+
+  // Crear un formulario con la imagen redimensionada
+  const formData = new FormData();
+  formData.append('file', blob, 'profile.jpg');
+
+  // Subir la imagen al servidor
+  const { mutate } = useMutation('uploadAvatar', async () => {
+    const response = await axios.post(
+      `${API_BASE_URL}/users/photo/${user.id}`,
+      formData,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
       }
-    } else {
-      console.log('No se seleccionó ninguna imagen.');
-    }
+    );
+
+    return response.data;
+  });
+
+  // Subir la imagen al servidor
+  mutate();
 };
 
 useEffect(() => {
   if (selectedImage) {
-    handleSaveAvatar();
+    handleSaveAvatar(selectedImage);
   }
 }, [selectedImage]);
 
