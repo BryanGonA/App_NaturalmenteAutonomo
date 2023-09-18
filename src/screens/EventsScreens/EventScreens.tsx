@@ -107,9 +107,9 @@ export default function EventScreens() {
                         title={events.title}
                         eventId={events.id}
                         description={events.description}
-                        endDate={events.endDate}
-                        startDate={events.startDate}
-                        time={events.time} 
+                        endDate={format(parseISO(events.eventEnd), "PP", { locale: es })}
+                        startDate={format(parseISO(events.eventStart), "PP", { locale: es })}
+                        time={format(parseISO(events.eventStart), "h:mm a")}
                         onPressButton={function (): void {
                             throw new Error("Function not implemented.");
                         }}
