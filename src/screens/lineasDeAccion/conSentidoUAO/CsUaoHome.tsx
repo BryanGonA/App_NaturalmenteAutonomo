@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
 import Events from "../../../components/Events/eventCard";
 import { ScrollView } from "react-native-gesture-handler";
@@ -11,7 +11,12 @@ import { format, parseISO } from "date-fns";
 import { es } from "date-fns/locale";
 import API_BASE_URL from '../../../components/config/ApiConfig'
 
+const logo = require( "../../../assets/logo/log_blanck.png");
+
 export default function csUaoHome() {
+
+    const navigation = useNavigation();
+    
     const handlePressButton = () => {
         // ...
     };
@@ -43,13 +48,17 @@ export default function csUaoHome() {
 
     return (
         <View style={styles.container}>
+            <View style={styles.titleBar}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Ionicons name="ios-arrow-back" size={30} color="#52575D" style={styles.arrow}/>
+                </TouchableOpacity>
+                <Image source={logo} style={styles.logos} />
+                <Text style={styles.title}>     </Text>
+            </View>
             <View style={styles.header}>
                 <Image source={require('../../../assets/logo/con_sentido_uao.png')} style={styles.image} />
                 <Text style={styles.title}>Con sentido UAO</Text>
             </View>
-            <TouchableOpacity onPress={handlePressButton} style={styles.button}>
-                <Text style={styles.buttonText}>Eventos</Text>
-            </TouchableOpacity>
             <ScrollView contentContainerStyle={styles.events}>
                 <Text style={styles.description}>Sentirse bien a nivel psicológico implica estar a gusto contigo mismo y con tu forma de estar en el mundo. El bienestar emocional tiene gran impacto en tu vitalidad y te ayuda a adoptar actitudes positivas y vitales en el día a día.</Text>
                 <Text style={styles.eventsTitle}>Próximos eventos</Text>

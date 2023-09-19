@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TouchableOpacity, Image, SafeAreaView, ScrollView, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
-import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
 import { useQuery, useMutation } from 'react-query';
 import ImageResizer from 'react-native-image-resizer';
 
@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import API_BASE_URL from '../../components/config/ApiConfig';
 import base64js from 'base64-js';
 import * as ImagePicker from 'expo-image-picker';
+import { LoginContext } from '../../../App';
 
 
 import styles from './profileStyles'
@@ -39,7 +40,7 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
 
   const defaultProfileImage = require('../../assets/images/user.png');
 
-  
+  const { user, setUser } = useContext(LoginContext);
 
   const [userDetails, setUserDetails] = useState({
     name: 'Nombre del usuario',
@@ -146,54 +147,45 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
 };
 
 
-const handleSaveAvatar = async (selectedImage: string) => {
-  // Validar la imagen seleccionada
-  if (!selectedImage) {
-    throw new Error('No se seleccionó ninguna imagen.');
-  }
+const handleSaveAvatar = async () => {
+      if (selectedImage) {
+        try {
+    const token = await AsyncStorage.getItem('jwt');
+          const res = await axios.get(API_BASE_URL + '/users/me', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+          const user = res.data;
+          const blob = await fetch(selectedImage).then((r) => r.blob());
 
-  // Obtener el token del usuario
-  const token = await AsyncStorage.getItem('jwt');
+    const formData = new FormData();
+    formData.append('file', blob, user.username + '.jpg');
 
-  // Obtener el ID del usuario
-  const { data: user } = await axios.get(API_BASE_URL + '/users/me', {
-    headers: {
-      'Authorization': `Bearer ${token}`,
-    },
-  });
-
-  // Redimensionar la imagen
-  const resizedImage = await ImageResizer.createResizedImage(selectedImage, 300, 300, 'JPEG', 100);
-
-  const blob = await fetch(resizedImage.uri).then((r) => r.blob());
-
-  // Crear un formulario con la imagen redimensionada
-  const formData = new FormData();
-  formData.append('file', blob, 'profile.jpg');
-
-  // Subir la imagen al servidor
-  const { mutate } = useMutation('uploadAvatar', async () => {
-    const response = await axios.post(
-      `${API_BASE_URL}/users/photo/${user.id}`,
-      formData,
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
+      const response = await axios.post(
+        `${API_BASE_URL}/users/photo/${user.id}`,
+        formData,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+          console.log('Imagen subida con éxito:', response.data);
+          // Actualizar la imagen en userDetails si es necesario
+          
+        } catch (error) {
+          console.error('Error al subir la imagen:', error);
+        }
+      } else {
+        console.log('No se seleccionó ninguna imagen.');
       }
-    );
-
-    return response.data;
-  });
-
-  // Subir la imagen al servidor
-  mutate();
-};
+    };
 
 useEffect(() => {
   if (selectedImage) {
-    handleSaveAvatar(selectedImage);
+    handleSaveAvatar();
   }
 }, [selectedImage]);
 

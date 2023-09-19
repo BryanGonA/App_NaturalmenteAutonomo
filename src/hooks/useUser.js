@@ -38,7 +38,6 @@ return {
     isLogged: state.logged,
     isLoginLoading: state.loading,
     hasLoginError: state.error,
-    login,
-    
+    login,  
 };
 }

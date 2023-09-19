@@ -6,6 +6,7 @@ import styles from "./alimenteStyles";
 import Events from "../../../components/Events/eventCard";
 import { ScrollView } from "react-native-gesture-handler";
 import SidebarMenu from "../../../components/sideBar/SideBar";
+import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
 import { es } from "date-fns/locale";
@@ -15,6 +16,7 @@ import API_BASE_URL from '../../../components/config/ApiConfig'
 //Images
 const event1 = require('../../../assets/events/agricult.jpg');
 const event2 = require('../../../assets/events/cafeUAO.jpg');
+const logo = require( "../../../assets/logo/log_blanck.png");
 
 export default function AlimenteHome() {
 
@@ -56,6 +58,13 @@ export default function AlimenteHome() {
 
     return (
         <View style={styles.container}>
+            <View style={styles.titleBar}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Ionicons name="ios-arrow-back" size={30} color="#52575D" style={styles.arrow}/>
+                </TouchableOpacity>
+                <Image source={logo} style={styles.logos} />
+                <Text style={styles.title}>     </Text>
+            </View>
             <View style={styles.header}>
                 <Image source={require('../../../assets/logo/Alimente.png')} style={styles.image} />
                 <Text style={styles.title}>Alimente</Text>

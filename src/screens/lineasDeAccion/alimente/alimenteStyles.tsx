@@ -8,9 +8,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: '#fff',
-        borderRadius: 10,
-        padding: 10,
-        marginTop: 30,
     },
     background: {
         resizeMode: "cover",
@@ -63,7 +60,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 10,
         padding: 10,
-        
+        marginBottom: 20,
     },
 
     button: {
@@ -112,6 +109,30 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff", 
         borderRadius: 8,
         elevation: 4, 
+    },
+    titleBar: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignContent: "center",
+        alignItems: "center",
+        alignSelf: 'stretch',
+        paddingHorizontal: 16,
+        paddingTop: 40,
+        marginBottom: 10,
+    },
+    logo: {
+        width: 25,
+        height: 25,
+        resizeMode: "contain",
+    },
+    logos: {
+        width: 40,
+        height: 40,
+        resizeMode: "contain",
+    },
+    arrow: {
+        width: 30, // Tamaño de la flecha
+        height: 30,
     },
 });
 
