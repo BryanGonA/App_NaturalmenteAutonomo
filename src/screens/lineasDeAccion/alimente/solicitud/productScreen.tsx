@@ -1,149 +1,122 @@
-import React, { useState, useEffect } from 'react';
-import { View, Image, TouchableOpacity  } from 'react-native';
-import { Card, FlatList, Text, Container, ScrollView, Fab, Icon, Button, Modal, FormControl, Input } from 'native-base';
-import axios from 'axios';
-import API_BASE_URL from '../../../../components/config/ApiConfig'
-import { Picker } from '@react-native-picker/picker';
+import React, { useState } from 'react';
+import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import styles from './styles';
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string; // Agrega la ruta de la imagen para cada producto
+  availableQuantity: number; // Agrega la cantidad disponible
+}
 
-const ProductScreen = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [products, setProducts] = useState([]);
-  const [answers, setAnswers] = useState({});
-  const [questions, setQuestions] = useState([]); // Arreglo de preguntas
+const products: Product[] = [
+  { id: 1, name: 'Producto 1', price: 10, image: 'ruta_imagen_1', availableQuantity: 5 },
+  { id: 2, name: 'Producto 2', price: 15, image: 'ruta_imagen_2', availableQuantity: 8 },
+  { id: 3, name: 'Producto 3', price: 20, image: 'ruta_imagen_3', availableQuantity: 3 },
+  // Agrega más productos según tus necesidades
+];
 
-  useEffect(() => {
-    // Realizar la solicitud HTTP al montar el componente
-    axios.get(API_BASE_URL + '/items')
-      .then(response => {
-        setProducts(response.data); // Actualizar el estado con los datos recibidos
-      })
-      .catch(error => {
-        console.error('Error al obtener los datos:', error);
-      });
+const ProductScreen: React.FC = () => {
+  const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
+  const navigation = useNavigation();
 
-    // Obtener las preguntas desde la API
-    axios.get(API_BASE_URL + '/requests/questions')
-      .then(response => {
-        setQuestions(response.data); // Actualizar el estado con las preguntas recibidas
-        // Inicializar las respuestas con un objeto vacío
-        const initialAnswers = {};
-        response.data.forEach(question => {
-          initialAnswers[question.id] = ''; // Cada pregunta empieza con una respuesta vacía
-        });
-        setAnswers(initialAnswers);
-      })
-      .catch(error => {
-        console.error('Error al obtener las preguntas:', error);
-      });
-  }, []);
-
-  const handleAnswerChange = (questionId, value) => {
-    setAnswers(prevAnswers => ({
-      ...prevAnswers,
-      [questionId]: value,
-    }));
+  const toggleProductSelection = (productId: number) => {
+    setSelectedProducts((prevSelectedProducts) => {
+      if (prevSelectedProducts.includes(productId)) {
+        return prevSelectedProducts.filter((id) => id !== productId);
+      } else {
+        return [...prevSelectedProducts, productId];
+      }
+    });
   };
 
-  const handleSubmit = () => {
-    const user = {
-      id: '', // Debe ser el ID del usuario logueado
-      firstName: '', // Debe ser el nombre del usuario logueado
-      cedula: '', // Debe ser la cédula del usuario logueado
-    };
-
-    const responses = questions.map(question => ({
-      answer: answers[question.id],
-      question: {
-        id: question.id,
-      },
+  const handleCheckout = () => {
+    // Crear el JSON de detalles del carrito a partir de los productos seleccionados
+    const detailsCart = selectedProducts.map((productId) => ({
+      itemId: productId,
+      cafeteriaId: 1,
     }));
 
-    const requestData = {
-      responses: responses,
-    };
+    // Enviar el JSON a la API o realizar la navegación a la pantalla de solicitud
+    console.log(JSON.stringify({ detailsCart }));
 
-    // Enviar el JSON a la API
-    axios.post(API_BASE_URL + '/requests', requestData)
-      .then(response => {
-        // Manejar la respuesta de la API
-        console.log('Respuesta de la API:', response.data);
-        setModalVisible(false); // Cerrar el modal al enviar
-      })
-      .catch(error => {
-        console.error('Error al enviar el formulario:', error);
-      });
+    // Navegar a la pantalla de solicitud (ajusta el nombre de la pantalla según tu configuración)
+    navigation.navigate('Solicitud');
   };
 
-   // Función para renderizar cada elemento de la lista
-   const renderItem = ({ item }) => (
-    <Card style={styles.productCard}>
+  const renderItem = ({ item }: { item: Product }) => (
+    <TouchableOpacity
+      onPress={() => toggleProductSelection(item.id)}
+      style={styles.productItem}
+    >
       <Image source={{ uri: item.image }} style={styles.productImage} />
       <Text style={styles.productName}>{item.name}</Text>
-    </Card>
+      <Text style={styles.productQuantity}>Disponibles: {item.availableQuantity}</Text>
+      {selectedProducts.includes(item.id) && (
+        <Icon name="check-circle" size={24} color="green" style={styles.productCheckIcon} />
+      )}
+    </TouchableOpacity>
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Lista de Productos</Text>
+    <View style={{ flex: 1 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 16 }}>
+        <Text>Selecciona los productos que deseas comprar:</Text>
+        <TouchableOpacity onPress={handleCheckout}>
+          <Icon name="shopping-cart" size={24} color="black" />
+        </TouchableOpacity>
       </View>
-      <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.description}>
-          Bienvenido a Comparte UAO. En este apartado podrás encontrar alimentos que desde la solidaridad, la comunidad autónoma ha dispuesto para ti.
-        </Text>
-        <View style={styles.productList}>
-          {products.map(product => renderItem({ item: product }))}
-        </View>
-      </ScrollView>
-      <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
-        <Modal.Content>
-          <Modal.CloseButton />
-          <Modal.Header>Solicitar Donación</Modal.Header>
-          <Modal.Body>
-            {questions.map(question => (
-              <FormControl key={question.id} mt="3">
-                <FormControl.Label>{question.text}</FormControl.Label>
-                {question.openEnded ? (
-                  <Input
-                    value={answers[question.id]}
-                    onChangeText={value => handleAnswerChange(question.id, value)}
-                  />
-                ) : (
-                  <Picker
-                    selectedValue={answers[question.id]}
-                    onValueChange={value => handleAnswerChange(question.id, value)}
-                  >
-                    {/* Aquí puedes mapear las opciones de la pregunta cerrada */}
-                    {question.options.map(option => (
-                      <Picker.Item key={option} label={option} value={option} />
-                    ))}
-                  </Picker>
-                )}
-              </FormControl>
-            ))}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onPress={handleSubmit}>
-              <Text>Enviar</Text>
-            </Button>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
+      <FlatList
+        data={products}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderItem}
+      />
       <TouchableOpacity
-        style={styles.fab}
-        onPress={() => {
-          setModalVisible(true);
-        }}
+        onPress={handleCheckout}
+        style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'blue', padding: 16 }}
       >
-        <Text style={styles.TextBt}>Solicitar Donación</Text>
+        <Text style={{ color: 'white', fontSize: 18 }}>Realizar solicitud</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-
+const styles = StyleSheet.create({
+  productItem: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+    borderWidth: 1,
+    borderColor: 'lightgray',
+    borderRadius: 10,
+    margin: 8,
+  },
+  productImage: {
+    width: 80,
+    height: 80,
+    marginBottom: 8,
+  },
+  productName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  productPrice: {
+    fontSize: 14,
+    color: 'gray',
+  },
+  productQuantity: {
+    fontSize: 14,
+    color: 'gray',
+  },
+  productCheckIcon: {
+    marginTop: 8,
+  },
+});
 
 export default ProductScreen;
+
+
 
