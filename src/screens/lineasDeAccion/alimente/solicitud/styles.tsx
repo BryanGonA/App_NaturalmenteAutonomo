@@ -12,27 +12,26 @@ const RECIPE_ITEM_MARGIN = 20;
 
 // 2 photos per width
 const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+    backgroundColor: '#fff',
+    height: '100%',
+    width: '100%',
+  },
   container1: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: RECIPE_ITEM_MARGIN,
-    marginTop: 20,
-    width: (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) / recipeNumColums,
-    height: RECIPE_ITEM_HEIGHT + 75,
-    borderColor: '#cccccc',
-    borderWidth: 0.5,
-    borderRadius: 15
+    justifyContent:'space-around',
+    padding : 10,
   },
   photo: {
     width: (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) / recipeNumColums,
     height: RECIPE_ITEM_HEIGHT,
     borderRadius: 15,
     borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0
+    borderBottomRightRadius: 0,
+    justifyContent: 'center',
   },
   title: {
-    flex: 1,
+    
     fontSize: 17,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -46,16 +45,7 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
 
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    width: '100%',
-    height: '100%',
-    
-  },
+  
   header: {
     backgroundColor: '#57D400',
     padding: 20,
@@ -71,6 +61,25 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  titleBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignContent: "center",
+    alignItems: "center",
+    alignSelf: 'stretch',
+    paddingHorizontal: 16,
+    paddingTop: 30,
+    marginBottom: 10,
+},
+arrow: {
+  width: 30, // Tamaño de la flecha
+  height: 30,
+},
+logos: {
+  width: 40,
+  height: 40,
+  resizeMode: "contain",
+},
   content: {
     padding: 20,
   },
@@ -83,6 +92,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    padding : 10,
   },
   productCard: {
     width: '48%',
@@ -91,7 +101,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: '#bdc3c7',
     borderWidth: 1,
-    overflow: 'hidden',
+    margin: 5,
+    padding: 5,
+    alignItems: 'center',
   },
   productImage: {
     width: '100%',
@@ -104,6 +116,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  productQuantity: {
+    fontSize: 14,
+    color: 'gray',
+  },
+  productCheckIcon: {
+    marginTop: 8,
   },
   fab: {
     backgroundColor: '#3498db',
