@@ -54,6 +54,9 @@ export default function AlimenteHome() {
             .catch((error) => {
                 console.error("Error fetching events:", error);
             });
+
+        // Solitud get para comprobar si el usuario está inscrito en el evento
+        
     }, []);
 
     return (
