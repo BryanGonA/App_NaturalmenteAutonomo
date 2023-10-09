@@ -92,25 +92,4 @@ import { Ionicons } from '@expo/vector-icons';
         top: '15%',
         
     },
-    '@media (max-width: 576px)': {
-        log: {
-            
-            resizeMode: 'contain',
-            borderRadius: 50,
-            width:'50%',
-            height:'50%',
-            alignSelf: 'center',
-            top: '15%',
-            
-        },
-        btn: {
-            flexDirection: 'column',
-            height: 150,
-            justifyContent: 'space-evenly',
-            alignSelf: 'center',
-            bottom: -50,
-            marginTop: '50%',
-        
-        },
-    },
 });
