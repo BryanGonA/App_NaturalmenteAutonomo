@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Image, View } from 'react-native';
+import { Animated, Image, View } from 'react-native';
 import API_BASE_URL from "../../components/config/ApiConfig";
-import { Text, AlertDialog, Button, Box, Center } from 'native-base';
+import { Text, AlertDialog, Button, Center } from 'native-base';
 import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import base64js from 'base64-js';
 
 import eventCardStyles from './eventCardStyles';
+import styles from './eventCardStyles';
 
 export interface EventCardProps {
     title: string;
@@ -141,7 +142,7 @@ export default function EventCard({ title, eventId, description, time, startDate
 
             <AlertDialog isOpen={isOpen} onClose={() => setIsOpen(false)} leastDestructiveRef={cancelRef}>
                 <AlertDialog.Content>
-                    <Box bg="white" p={4} rounded="md" shadow={4}>
+                    <Animated.View style={styles.box}>
                         <Text fontSize="lg" fontWeight="bold" mb={2}>
                             {buttonText} Inscripción
                         </Text>
@@ -162,7 +163,7 @@ export default function EventCard({ title, eventId, description, time, startDate
                                 </Button>
                             </Button.Group>
                         </Center>
-                    </Box>
+                    </Animated.View>
                 </AlertDialog.Content>
             </AlertDialog>
         </View>

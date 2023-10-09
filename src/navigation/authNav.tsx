@@ -12,6 +12,7 @@ import VidaUaoHome from '../screens/lineasDeAccion/vidaUAO/VidaUaoHome';
 import CsUaoHome from '../screens/lineasDeAccion/conSentidoUAO/CsUaoHome';
 import ComparteUAO from '../screens/lineasDeAccion/alimente/solicitud/ProductScreen';
 import EventALL from '../screens/EventsScreens/EventScreens';
+import info from '../screens/lineasDeAccion/alimente/solicitud/Information';
 
 const RootStack = createStackNavigator();
 export default function AuthNav() {
@@ -60,6 +61,11 @@ export default function AuthNav() {
             <RootStack.Screen
                 name="EventALL"
                 component={EventALL}
+                options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+                name="info"
+                component={info}
                 options={{ headerShown: false }}
             />
             

@@ -73,6 +73,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginLeft: 8,
     },
+    box: {
+        backgroundColor: '#ffffff',
+        padding: 16,
+    },
 });
 
 export default styles;

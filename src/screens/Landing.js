@@ -6,6 +6,7 @@ import {
     ImageBackground,
     Image,
     Dimensions,
+    LinearGradient,
 } from 'react-native';
 import { Button } from '@rneui/base';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,8 +18,10 @@ import { Ionicons } from '@expo/vector-icons';
 
     render() {
         return (
-            <ImageBackground source={require('../assets/backg_1.jpg')} style={styles.image}>
-                <View style={styles.overlay}>
+            
+                <View style={styles.container}>
+                    
+                    <Image source={require('../assets/logo/log_blanck.png')} style={styles.log} />
                     <View style={styles.btn}>
                         <Button
                         buttonStyle={{
@@ -40,12 +43,18 @@ import { Ionicons } from '@expo/vector-icons';
                         />
                     </View>
                 </View>
-            </ImageBackground>
+            
         );
     }
     }
 
     const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignContent: 'center',
+        justifyContent: 'center',
+    },
     logo: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -61,16 +70,8 @@ import { Ionicons } from '@expo/vector-icons';
         justifyContent: 'space-evenly',
         alignSelf: 'center',
         bottom: -50,
-    },
-    image: {
-        
-        zIndex:-1,
-        resizeMode: 'cover',
-        width: screenWidth,
-        height: screenHeight,
-        justifyContent: 'center',
-        alignContent: 'center',
-        position: 'absolute',
+        marginTop: '50%',
+    
     },
     footer: {
         flexDirection: 'row',
@@ -81,20 +82,35 @@ import { Ionicons } from '@expo/vector-icons';
         color: 'white',
         
     },
-    overlay: {
-        flex: 1,
-        backgroundColor: 'transparent',
-        justifyContent: 'space-evenly',
-        flexDirection: 'column',
-    },
     log: {
-        marginTop: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
+        position: 'absolute',
         resizeMode: 'contain',
-        height: 200,
-        width: 200,
         borderRadius: 50,
+        width:'50%',
+        height:'50%',
+        alignSelf: 'center',
+        top: '15%',
         
+    },
+    '@media (max-width: 576px)': {
+        log: {
+            
+            resizeMode: 'contain',
+            borderRadius: 50,
+            width:'50%',
+            height:'50%',
+            alignSelf: 'center',
+            top: '15%',
+            
+        },
+        btn: {
+            flexDirection: 'column',
+            height: 150,
+            justifyContent: 'space-evenly',
+            alignSelf: 'center',
+            bottom: -50,
+            marginTop: '50%',
+        
+        },
     },
 });

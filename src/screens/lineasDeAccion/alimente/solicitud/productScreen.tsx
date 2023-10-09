@@ -7,24 +7,35 @@ import { Ionicons } from "@expo/vector-icons";
 
 import styles from "./styles";
 
+const productImages = {
+  "Sopa": require("../../../../assets/alimento/Sopa.jpg"),
+  "Principio": require("../../../../assets/alimento/principio.jpg"),
+  "Guarnicion": require("../../../../assets/alimento/guarnicion.jpg"),
+  "Bebida": require("../../../../assets/alimento/bebida.jpg"),
+  "Proteína": require("../../../../assets/alimento/proteina.jpg"),
+  "Ensalada": require("../../../../assets/alimento/ensalada.jpg"),
+  "Pasteleria": require("../../../../assets/alimento/pasteleria.jpg"),
+};
+
 const ProductCard = ({ item, onSelect }) => {
   const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
     setIsSelected(false); // Asegurarse de que isSelected esté en falso cuando se monta el componente
-  }, [item.id]); // Restablecer isSelected si el ID del producto cambia
+  }, [item.name]); // Restablecer isSelected si el ID del producto cambia
 
   const toggleSelection = () => {
     setIsSelected(!isSelected);
     onSelect(item, isSelected); // Pasar isSelected en lugar de !isSelected
   };
 
+  const image = productImages[item.name];
+
   return (
     <View style={styles.productCard}>
-      <Image source={{ uri: item.image }} style={styles.productImage} />
+      <Image source={image} style={styles.productImage} />
       <View style={styles.productInfo}>
         <Text style={styles.productName}>{item.name}</Text>
-        <Text style={styles.productDescription}>{item.description}</Text>
         <Text style={styles.productPrice}>Disponibles: {item.quantity}</Text>
         <View style={styles.buttonAdd}>
           <TouchableOpacity
@@ -68,7 +79,7 @@ const HeaderBar = () => {
   const navigation = useNavigation();
 
   const goBack = () => {
-    navigation.goBack();
+    navigation.navigate('Alimente');
   };
 
   return (
@@ -77,7 +88,7 @@ const HeaderBar = () => {
         <Ionicons name="arrow-back" size={24} color="black" />
       </TouchableOpacity>
       <Image source={require("../../../../assets/logo/log_blanck.png")} style={styles.logo} />
-      <TouchableOpacity onPress={() => navigation.navigate("CartScreen")}>
+      <TouchableOpacity >
         <Ionicons name="cart-outline" size={24} color="black" />
       </TouchableOpacity>
     </View>
@@ -88,16 +99,17 @@ const HeaderBar = () => {
 const ProductScreen = () => {
   const [products, setProducts] = useState();
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const navigation = useNavigation();
+  
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(API_BASE_URL + '/items');
+      const response = await axios.get(API_BASE_URL + '/items/allItems');
       setProducts(response.data);
     } catch (error) {
       console.log(error);
     }
   };
+
 
   useEffect(() => {
     fetchProducts();
@@ -106,19 +118,18 @@ const ProductScreen = () => {
   
 
   const handleSelectProduct = (product, isSelected) => {
-    const itemId = product.id;
+    
     const productName = product.name;
   
     if (isSelected) {
       // Eliminar el producto de selectedProducts
       const updatedProducts = selectedProducts.filter(
-        (item) => item.itemId !== itemId
+        (item) => item.name !== productName
       );
       setSelectedProducts(updatedProducts);
     } else {
       // Agregar el producto a selectedProducts
       const productJson = {
-        itemId,
         name: productName,
       };
       setSelectedProducts([...selectedProducts, productJson]);
@@ -149,7 +160,7 @@ const ProductScreen = () => {
         data={products}
         style={styles.productList}
         renderItem={renderProductItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.name.toString()}
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 100 }}
       />
       <SelectedProducts selectedProducts={selectedProducts} />

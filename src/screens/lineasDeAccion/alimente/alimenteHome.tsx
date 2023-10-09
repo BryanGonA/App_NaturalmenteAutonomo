@@ -28,7 +28,7 @@ export default function AlimenteHome() {
     };
 
     const handlePressBtComparte = () => {
-        navigation.navigate("ComparteUAO");
+        navigation.navigate("info");
     };
 
     const [events, setEvents] = useState([]);

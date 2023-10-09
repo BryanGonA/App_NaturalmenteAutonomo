@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   productImage: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: 100,
+    height: 100,
+    borderRadius: 10,
     marginRight: 16,
   },
   productInfo: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   productName: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: 'bold',
     marginBottom: 4,
   },
@@ -46,21 +46,25 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   productPrice: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#4caf50',
   },
   productPriceText: {
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: 'normal',
     color: '#666',
   },
   buttonAdd: {
+
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    paddingRight: 16,
-    marginBottom: 16,
+    paddingRight: 17,
+    marginBottom: 17,
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
     
   },
   footer1:{
@@ -130,7 +134,7 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 8,
     alignItems: 'center',
-    width: 70,
+    width: 60,
   },
   addButtonText: {
     color: 'white',
