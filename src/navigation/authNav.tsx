@@ -6,13 +6,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home1 from '../screens/Home/HomeScreen'
 import Settings from '../screens/Settings/Settings';
 import ProfileScreen from '../screens/Profile/profileScreen';
+import ProductsScreen from '../screens/Profile/Products/productsScreen';
 import AlimenteHome from '../screens/lineasDeAccion/alimente/alimenteHome';
 import AEM from "../screens/lineasDeAccion/autonomosEnMov/autoEnMov";
 import VidaUaoHome from '../screens/lineasDeAccion/vidaUAO/VidaUaoHome';
 import CsUaoHome from '../screens/lineasDeAccion/conSentidoUAO/CsUaoHome';
-import ComparteUAO from '../screens/lineasDeAccion/alimente/solicitud/ProductScreen';
+import ComparteUAO from '../screens/lineasDeAccion/alimente/solicitud/productScreen';
 import EventALL from '../screens/EventsScreens/EventScreens';
-import info from '../screens/lineasDeAccion/alimente/solicitud/Information';
 
 const RootStack = createStackNavigator();
 export default function AuthNav() {
@@ -31,6 +31,11 @@ export default function AuthNav() {
             <RootStack.Screen
                 name="Profile"
                 component={ProfileScreen}
+                options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+                name="Products"
+                component={ProductsScreen}
                 options={{ headerShown: false }}
             />
             <RootStack.Screen
@@ -61,11 +66,6 @@ export default function AuthNav() {
             <RootStack.Screen
                 name="EventALL"
                 component={EventALL}
-                options={{ headerShown: false }}
-            />
-            <RootStack.Screen
-                name="info"
-                component={info}
                 options={{ headerShown: false }}
             />
             

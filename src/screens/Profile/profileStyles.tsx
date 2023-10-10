@@ -76,6 +76,22 @@ const styles = StyleSheet.create({
       alignSelf: "center",
       marginTop: 32
   },
+  button: {
+    backgroundColor: '#57D400',
+    paddingVertical: 10, // ajusta el padding según tus preferencias
+    paddingHorizontal: 20, // ajusta el padding según tus preferencias
+    borderRadius: 5, // ajusta el radio según tus preferencias
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  buttonHover: {
+    backgroundColor: 'rgba(87, 212, 0, 0.5)', // Fondo semi-transparente cuando se hace hover
+  },
+  buttonTextHover: {
+    color: 'black', // Texto negro cuando se hace hover
+  },
   statsBox: {
       alignItems: "center",
       flex: 1

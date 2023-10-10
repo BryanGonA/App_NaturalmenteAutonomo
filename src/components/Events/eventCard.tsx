@@ -23,7 +23,7 @@ export default function EventCard({ title, eventId, description, time, startDate
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
-    const defaultProfileImage = require('../../assets/images/user.png');
+    const defaultProfileImage = require('../../assets/images/wall.jpg');
 
     const [eventDetails, setEventDetails] = useState({
         profileImage: defaultProfileImage, // Imagen de perfil predeterminada

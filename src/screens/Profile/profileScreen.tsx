@@ -4,9 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { Ionicons, Feather } from "@expo/vector-icons";
-import { useQuery, useMutation } from 'react-query';
-import ImageResizer from 'react-native-image-resizer';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API_BASE_URL from '../../components/config/ApiConfig';
 import base64js from 'base64-js';
@@ -37,6 +34,8 @@ const ProfileScreen: React.FC<Props> = ({ name, email, avatar }) => {
   const navigation = useNavigation();
   
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const [isHovered, setIsHovered] = useState(false);
 
   const defaultProfileImage = require('../../assets/images/user.png');
 
@@ -244,59 +243,27 @@ useEffect(() => {
           </View>
         </View>
 
-        <View style={{ marginTop: 32 }}>
-          {/**<ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                source={require("../../assets/photo.jpg")}
-                style={styles.image}
-                resizeMode="cover"
-              ></Image>
+        <View style={styles.statsContainer}>
+          <View style={styles.statsBox}>
+            <View style={{ marginBottom: 50 }}>
+              <Text style={[styles.text, { fontSize: 18 }]}>Visualiza los productos disponibles para ser canjeados dando click en el siguiente botón.</Text>
             </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                source={require("../../assets/profile.png")}
-                style={styles.image}
-                resizeMode="cover"
-              ></Image>
-            </View>
-            <View style={styles.mediaImageContainer}>
-              <Image
-                source={require("../../assets/photo.jpg")}
-                style={styles.image}
-                resizeMode="cover"
-              ></Image>
-            </View>
-        </ScrollView>**/}
-        </View>
-        <Text style={[styles.subText, styles.recent]}>Actividad reciente</Text>
-        <View style={{ alignItems: "center" }}>
-          <View style={styles.recentItem}>
-            <View style={styles.activityIndicator}></View>
-            <View style={{ width: 250 }}>
-              <Text
-                style={[styles.text, { color: "#41444B", fontWeight: "300" }]}
-              >
-                Te inscribiste al evento{" "}
-                <Text style={{ fontWeight: "400" }}>Recetas saludables</Text> hace{" "}
-                <Text style={{ fontWeight: "400" }}>2 minutos.</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Products')}
+              style={[
+                styles.button,
+                isHovered && styles.buttonHover,
+              ]}
+              onPressIn={() => setIsHovered(true)}
+              onPressOut={() => setIsHovered(false)}
+            >
+              <Text style={[styles.buttonText, isHovered && styles.buttonTextHover]}>
+                Ver productos
               </Text>
-            </View>
-          </View>
-
-          <View style={styles.recentItem}>
-            <View style={styles.activityIndicator}></View>
-            <View style={{ width: 250 }}>
-              <Text
-                style={[styles.text, { color: "#41444B", fontWeight: "300" }]}
-              >
-                Haz ganado 15 puntos por participar en{" "}
-                <Text style={{ fontWeight: "400" }}>Caminantes UAO</Text>
-              </Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
+        </ScrollView>
     </SafeAreaView>
   );
 };
