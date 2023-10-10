@@ -45,14 +45,15 @@ const Stylesproducts = StyleSheet.create({
     marginRight: 16,
   },
   productName: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: 'bold',
     marginBottom: 4,
   },
   productDescription: {
-    fontSize: 14,
+    fontSize: 20,
     color: '#666',
     marginBottom: 4,
+    textAlign: 'justify',
   },
   productPrice: {
     fontSize: 16,

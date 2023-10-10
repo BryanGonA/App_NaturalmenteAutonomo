@@ -246,7 +246,7 @@ useEffect(() => {
         <View style={styles.statsContainer}>
           <View style={styles.statsBox}>
             <View style={{ marginBottom: 50 }}>
-              <Text style={[styles.text, { fontSize: 18 }]}>Visualiza los productos disponibles para ser canjeados dando click en el siguiente botón.</Text>
+              <Text style={[styles.descrip]}>Visualiza los productos disponibles para ser canjeados dando click en el siguiente botón.</Text>
             </View>
             <TouchableOpacity
               onPress={() => navigation.navigate('Products')}

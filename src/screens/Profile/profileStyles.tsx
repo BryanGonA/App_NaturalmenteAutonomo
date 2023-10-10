@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
       backgroundColor: "#FFF",
   },
   text: {
+      fontSize: 18,
       color: "#52575D"
   },
   image: {
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
     borderRadius: 5, // ajusta el radio según tus preferencias
   },
   buttonText: {
+    fontSize: 18,
     color: 'white',
     textAlign: 'center',
   },
@@ -139,7 +141,15 @@ const styles = StyleSheet.create({
       marginTop: 3,
       marginRight: 20
   },
-  
+  descrip:{
+    fontSize: 18,
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 15,
+    textAlign: "justify",
+    color: "#52575D"
+  },
+
 });
 
   export default styles;
