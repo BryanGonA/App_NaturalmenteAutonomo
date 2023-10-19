@@ -16,12 +16,12 @@ export interface EventCardProps {
     endDate: string;
     startDate: string;
     time: string;
-    onPressButton: () => void;
 }
 
-export default function EventCard({ title, eventId, description, time, startDate, endDate, onPressButton }: EventCardProps) {
+export default function EventCard({ title, eventId, description, time, startDate, endDate }: EventCardProps) {
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
 
     const defaultProfileImage = require('../../assets/images/wall.jpg');
 
@@ -51,54 +51,105 @@ export default function EventCard({ title, eventId, description, time, startDate
             });
 
         } catch (error) {
-            console.error('Error al obtener la imagen:', error);
+            if (error.response && error.response.status === 500) {
+                console.log("No hay imagen asociada");
+            } else {
+                console.error('Error al obtener la imagen:', error);
+            }
             setEventDetails({
                 profileImage: defaultProfileImage,
             });
         }
     };
-
-    useEffect(() => {
-        fetchEventData();
-    }, []);
-
-    
-
+  
     const handlePressButton = () => {
         setIsOpen(true);
     };
 
     const handleConfirm = async () => {
         try {
-            // Paso 1: Obtener el ID del usuario que inició sesión
             const token = await AsyncStorage.getItem('jwt');
             const userResponse = await axios.get(API_BASE_URL + '/users/me', {
-              headers: {
-                'Authorization': `Bearer ${token}`
-              }
-            });
-            const userId = userResponse.data; // Suponiendo que el ID está en userResponse.data
-            
-            // Paso 2: Hacer la solicitud POST
-            const responseEvento = await axios.post(
-                `${API_BASE_URL}/events/${eventId}/participants/${userId.id}`,
-                null,
-                {
-                  headers: {
+                headers: {
                     'Authorization': `Bearer ${token}`
-                  }
-                });
-            
-            setIsSubscribed(!isSubscribed);
-            onPressButton();
-            setIsOpen(false);
-            console.log('Inscripción aprobada');
-          } catch (error) {
-            console.error('Error al confirmar inscripción:', error);
+                }
+            });
+            const userId = userResponse.data;
+    
+            if (isSubscribed) {
+                // Si el usuario está inscrito, realizar la cancelación
+                const responseCancel = await axios.delete(
+                    `${API_BASE_URL}/events/${eventId}/participants/${userId.id}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                setIsSubscribed(false);
+                await fetchEventData();
+                await checkIfUserIsSubscribed();
+                console.log('Cancelación');
+                setIsOpen(false);
+            } else {
+                // Si el usuario no está inscrito, realizar la inscripción
+                const responseEvento = await axios.post(
+                    `${API_BASE_URL}/events/${eventId}/participants/${userId.id}`,
+                    null,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                setIsSubscribed(true);
+                console.log('Inscripción aprobada');
+                setIsOpen(false);
+            }
+        } catch (error) {
+            console.error('Error:', error);
             // Manejar el error si es necesario
-          }
+        }
 
     };
+
+    // Función para verificar si el usuario está inscrito
+    const checkIfUserIsSubscribed = async () => {
+        try {
+            const token = await AsyncStorage.getItem('jwt');
+
+            const userResponse = await axios.get(API_BASE_URL + '/users/me', {
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+            });
+            const userId = userResponse.data;
+            setCurrentUser(userId.id);
+    
+            const responseParticipants = await axios.get(API_BASE_URL + `/events/${eventId}/participants`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    
+            const participantIds = responseParticipants.data.map(participant => participant.id);
+
+            console.log("Participantes", participantIds);
+
+            // Verificar si el usuario actual está en la lista de participantes
+            const isUserSubscribed = participantIds.includes(currentUser);
+
+            setIsSubscribed(isUserSubscribed);
+            console.log("Id que coinciden", isUserSubscribed);
+    
+        } catch (error) {
+            console.error('Error al verificar la inscripción:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchEventData();
+        checkIfUserIsSubscribed(); // Llamar a la función de verificación al cargar el componente
+    }, [eventId, currentUser]);
+
 
     const buttonText = isSubscribed ? 'Cancelar' : 'Inscribirse';
 

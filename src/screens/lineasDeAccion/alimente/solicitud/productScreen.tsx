@@ -88,9 +88,7 @@ const HeaderBar = () => {
         <Ionicons name="arrow-back" size={24} color="black" />
       </TouchableOpacity>
       <Image source={require("../../../../assets/logo/log_blanck.png")} style={styles.logo} />
-      <TouchableOpacity >
-        <Ionicons name="cart-outline" size={24} color="black" />
-      </TouchableOpacity>
+      <Text>     </Text>
     </View>
   );
 };

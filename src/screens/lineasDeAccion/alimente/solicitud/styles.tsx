@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
   },
   productInfo: {
     flex: 1,
-    marginRight: 16,
+    marginRight: 1,
   },
   productName: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 4,
   },
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   productPrice: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
     color: '#4caf50',
   },

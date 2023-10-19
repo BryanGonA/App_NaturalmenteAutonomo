@@ -76,7 +76,6 @@ export default function AlimenteHome() {
                                 endDate={format(parseISO(event.eventEnd), "PP", { locale: es })}
                                 startDate={format(parseISO(event.eventStart), "PP", { locale: es })}
                                 time={format(parseISO(event.eventStart), "h:mm a")}
-                                onPressButton={handlePressButton}
                             />
                         ))}
                 </View>

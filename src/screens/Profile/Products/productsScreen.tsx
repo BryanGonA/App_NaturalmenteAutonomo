@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, FlatList, Button, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, FlatList, Button, Image, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import API_BASE_URL from "../../../components/config/ApiConfig";
 import axios from "axios";
@@ -40,8 +40,11 @@ const ProductCard = ({ item, onSelect }) => {
             });
 
         } catch (error) {
-            console.error('Error al obtener la imagen:', error);
-            
+          if (error.response && error.response.status === 500) {
+            console.log("No hay imagen asociada");
+            } else {
+                console.error('Error al obtener la imagen:', error);
+            }
             setEventDetails({
                 profileImage: defaultProfileImage,
             });
@@ -68,15 +71,15 @@ const ProductCard = ({ item, onSelect }) => {
 
 
   return (
-    <View style={styles.productCard}>
+    <View style={styles.productCard1}>
       <View>
-        <Image source={eventDetails.profileImage} style={styles.productImage} />
+        <Image source={eventDetails.profileImage} style={styles.productImage1} />
       </View>
-      <View style={styles.productInfo}>
-        <Text style={styles.productName}>{item.name}</Text>
-        <Text style={styles.productDescription}>{item.description}</Text>
+      <View style={styles.productInfo1}>
+        <Text style={styles.productName1}>{item.name}</Text>
+        <Text style={styles.productDescription1}>{item.description}</Text>
         <Text style={styles.productPrice2}>Precio: {item.price} puntos</Text>
-        <Text style={styles.productPrice}>Disponibles: {item.quantity}</Text>
+        <Text style={styles.productPrice1}>Disponibles: {item.quantity}</Text>
       </View>
     </View>
   );
@@ -144,22 +147,25 @@ const ProductScreen = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container01}>
       <HeaderBar />
-        <View style={styles.container2}>
-            <Text style={styles.productName}>Porductos disponibles:</Text>
-            <Text style={styles.productDescription}>A continuación podrás observar los productos que hay disponibles para ser canjeados por los puntos que tengas. 
+      <ScrollView>
+        <View style={styles.container22}>
+            <Text style={styles.productName1}>Porductos disponibles:</Text>
+            <Text style={styles.productDescription1}>A continuación podrás observar los productos que hay disponibles para ser canjeados por los puntos que tengas. 
             Para poder reclamar uno de estos productos, debes dirigirte a CASA, de la Universidad Autónoma de Occidente, y revisar si la cantidad de puntos que tengas, 
             son los suficientes para reclamar un producto </Text>
         </View>
       <FlatList
         data={products}
-        style={styles.productList}
+        style={styles.productList1}
         renderItem={renderProductItem}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 100 }}
       />
+      </ScrollView>
     </View>
+    
   );
 };
 

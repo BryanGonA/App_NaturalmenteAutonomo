@@ -19,6 +19,7 @@ export default function Mystack() {
 
   const [user, setUser] = useState(null);
   const contextValue = useMemo(() => ({ setUser, user }), [user]);
+  console.disableYellowBox = true;
 
   return (
           <NavigationContainer style={styles.nav}>

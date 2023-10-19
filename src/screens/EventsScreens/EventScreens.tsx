@@ -121,9 +121,6 @@ export default function EventScreens() {
                         endDate={format(parseISO(events.eventEnd), "PP", { locale: es })}
                         startDate={format(parseISO(events.eventStart), "PP", { locale: es })}
                         time={format(parseISO(events.eventStart), "h:mm a")}
-                        onPressButton={function (): void {
-                            throw new Error("Function not implemented.");
-                        }}
                     />
                     ))}  
                 </View>

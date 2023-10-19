@@ -59,22 +59,6 @@ return (
                     );
                 },
                 headerTitleAlign: 'center',
-                headerRight: () => {
-                    return (
-                    <View style={{ flexDirection: 'row' }}>
-                        <Menu shadow={2} w="190" trigger={triggerProps => {
-                            return <Pressable accessibilityLabel="More options menu" {...triggerProps} style={styles.NotificationIcon}>
-                                    <MaterialIcons name="notifications" type="font-awesome" size={24} color="black" />
-                                    </Pressable>;
-                            }}>
-                                <Menu.Item>Te has inscripto exitosamente</Menu.Item>
-                                <Menu.Item>Hay un nuevo evento</Menu.Item>
-                                <Menu.Item isDisabled>Ejemplo Bloqueo</Menu.Item>
-                                <Menu.Item>Ver más...</Menu.Item>
-                            </Menu>
-                    </View>
-                    );
-                },
                 headerRightContainerStyle: {
                     marginRight: 10
                 },

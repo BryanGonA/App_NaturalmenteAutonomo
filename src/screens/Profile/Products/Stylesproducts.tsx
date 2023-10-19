@@ -3,12 +3,12 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 // 2 photos per width
 const Stylesproducts = StyleSheet.create({
-  container: {
+  container01: {
     flex: 1,
     backgroundColor: '#f7f7f7',
     paddingTop:40,
   },
-  container2: {
+  container22: {
     backgroundColor: '#f7f7f7',
     paddingTop:20,
     margin: 0,
@@ -17,11 +17,11 @@ const Stylesproducts = StyleSheet.create({
     padding: 16,
     marginBottom: 5,
   },
-  productList: {
+  productList1: {
     flex: 1,
     paddingTop: 16,
   },
-  productCard: {
+  productCard1: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -34,28 +34,28 @@ const Stylesproducts = StyleSheet.create({
     padding: 16,
     marginBottom: 16,
   },
-  productImage: {
+  productImage1: {
     width: 100,
     height: 100,
     borderRadius: 25,
     marginRight: 16,
   },
-  productInfo: {
+  productInfo1: {
     flex: 1,
     marginRight: 16,
   },
-  productName: {
+  productName1: {
     fontSize: 25,
     fontWeight: 'bold',
     marginBottom: 4,
   },
-  productDescription: {
-    fontSize: 20,
+  productDescription1: {
+    fontSize: 16,
     color: '#666',
     marginBottom: 4,
     textAlign: 'justify',
   },
-  productPrice: {
+  productPrice1: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#4caf50',

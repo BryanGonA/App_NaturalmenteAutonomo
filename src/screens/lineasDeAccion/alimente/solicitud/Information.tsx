@@ -149,6 +149,8 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 16,
         alignItems: 'center',
+        position: 'absolute', 
+        bottom: 50,
     },
     continueButtonText: {
         color: '#fff',

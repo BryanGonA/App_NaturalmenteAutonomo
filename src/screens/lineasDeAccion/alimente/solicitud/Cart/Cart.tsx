@@ -71,7 +71,7 @@
             <View style={styles.quantityContainer}>
                 <Button title="-" onPress={() => decreaseQuantity(item)} />
                 <Text style={styles.quantity}>{item.quantity}</Text>
-                <Button title="+" onPress={() => increaseQuantity(item)} />
+                <Button title="+" onPress={() => increaseQuantity(item)}/>
             </View>
             <View style={styles.removeButton}>
                 <Button title="Remove" onPress={() => removeItem(item)} />

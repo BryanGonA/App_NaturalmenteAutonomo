@@ -11,7 +11,7 @@ import AlimenteHome from '../screens/lineasDeAccion/alimente/alimenteHome';
 import AEM from "../screens/lineasDeAccion/autonomosEnMov/autoEnMov";
 import VidaUaoHome from '../screens/lineasDeAccion/vidaUAO/VidaUaoHome';
 import CsUaoHome from '../screens/lineasDeAccion/conSentidoUAO/CsUaoHome';
-import ComparteUAO from '../screens/lineasDeAccion/alimente/solicitud/ProductScreen';
+import ComparteUAO from '../screens/lineasDeAccion/alimente/solicitud/productScreen';
 import EventALL from '../screens/EventsScreens/EventScreens';
 import info from '../screens/lineasDeAccion/alimente/solicitud/Information'
 
