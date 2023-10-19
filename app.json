@@ -4,10 +4,10 @@
     "slug": "App_Bienestar",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/launcher/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "backgroundImage": "./src/assets/backg_1.jpg"
+  
     },
     "plugins": [
       [
@@ -24,19 +24,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "backgroundImage": "./src/assets/backg_1.jpg"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/launcher/adaptive-icon.png",
         "resizeMode": "contain",
-        "backgroundColor": "#FFFFFF",
-        "backgroundImage": "./src/assets/backg_1.jpg"
+        "backgroundColor": "#FFFFFF"
+        
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/launcher/favicon.png"
+      
     }
   }
 }
