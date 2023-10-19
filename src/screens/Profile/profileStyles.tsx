@@ -142,13 +142,26 @@ const styles = StyleSheet.create({
       marginRight: 20
   },
   descrip:{
-    fontSize: 18,
-    marginTop: 10,
+    fontSize: 20,
+    marginTop: 1,
     marginBottom: 10,
-    padding: 15,
+    padding: 10,
     textAlign: "justify",
-    color: "#52575D"
+    color: "#52575D",
+    marginLeft: 20,
+    marginRight: 20,
+  
   },
+  title:
+    {
+        fontSize: 24,
+        marginTop: 10,
+        marginBottom: 1,
+        padding: 10,
+        textAlign: "center",
+        color: "#52575D",
+        fontWeight: "bold",
+    },
 
 });
 

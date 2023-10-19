@@ -246,6 +246,7 @@ useEffect(() => {
         <View style={styles.statsContainer}>
           <View style={styles.statsBox}>
             <View style={{ marginBottom: 50 }}>
+            <Text style={[styles.title]}>Canjea tus puntos</Text>
               <Text style={[styles.descrip]}>Visualiza los productos disponibles para ser canjeados dando click en el siguiente botón.</Text>
             </View>
             <TouchableOpacity
