@@ -88,7 +88,7 @@ export default function SidebarMenu(props: DrawerContentComponentProps) {
     <DrawerContentScrollView {...props} style={styles.container}>
       <View style={styles.exit}>
         <TouchableOpacity onPress={() => props.navigation.closeDrawer()}>
-          <MaterialIcons name="close" size={30} color="white" />
+          <MaterialIcons name="close" size={30} color="gray" />
         </TouchableOpacity>
       </View>
       <View style={styles.header}>
@@ -105,7 +105,7 @@ export default function SidebarMenu(props: DrawerContentComponentProps) {
           activeBackgroundColor="#fff"
           activeTintColor="#000"
           labelStyle={styles.itemText}
-          icon={() => <MaterialIcons name="home" size={24} color="white" />}
+          icon={() => <MaterialIcons name="home" size={24} color="gray" />}
         />
         <DrawerItem
           label="Eventos"
@@ -113,7 +113,7 @@ export default function SidebarMenu(props: DrawerContentComponentProps) {
           activeBackgroundColor="#fff"
           activeTintColor="#000"
           labelStyle={styles.itemText}
-          icon={() => <MaterialIcons name="event" size={24} color="white" />}
+          icon={() => <MaterialIcons name="event" size={24} color="gray" />}
         />
         <DrawerItem
           label="Ajustes"
@@ -121,12 +121,12 @@ export default function SidebarMenu(props: DrawerContentComponentProps) {
           activeBackgroundColor="#fff"
           activeTintColor="#000"
           labelStyle={styles.itemText}
-          icon={() => <MaterialIcons name="settings" size={24} color="white" />}
+          icon={() => <MaterialIcons name="settings" size={24} color="gray" />}
         />
       </View>
       <View style={styles.footer}>
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <MaterialIcons name="exit-to-app" size={24} color="black" style={styles.icon} />
+          <MaterialIcons name="exit-to-app" size={24} color="gray" style={styles.icon} />
           <Text style={styles.logout}>Cerrar sesión</Text>
         </TouchableOpacity>
       </View>

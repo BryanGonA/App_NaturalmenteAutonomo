@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#57D400',
+    backgroundColor: '#fff',
   },
   exit: {
     backgroundColor: 'transparent',
@@ -27,18 +27,21 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     borderWidth: 2,
     resizeMode: 'contain',
+    left: 10,
   },
   name: {
     fontSize: 14,
     fontWeight: 'bold',
     marginTop: 10,
-    color: '#fff',
+    color: 'gray',
+    left: 10,
   },
   textProfile: {
     fontSize: 10,
     fontWeight: 'bold',
     marginTop: 2,
-    color: '#fff',
+    color: 'gray',
+    left: 10,
   },
   itemContainer: {
     flex: 1,
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff',
+    color: 'gray',
   },
 
   notifications: {
@@ -113,7 +116,7 @@ const styles = StyleSheet.create({
   },
   logout: {
     fontSize: 16,
-    color: 'black',
+    color: 'gray',
     alignItems: 'center',
   },
   logoutButton: {

@@ -213,9 +213,7 @@ useEffect(() => {
               color="#DFD8C8"
             ></MaterialIcons>
           </View>*/}
-          
-          <View style={styles.active}></View>
-          
+                  
           <View style={styles.add}>
           <TouchableOpacity onPress={handleSelectAvatar}>
               <Ionicons
